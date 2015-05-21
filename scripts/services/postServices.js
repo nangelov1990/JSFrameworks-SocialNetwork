@@ -1,51 +1,186 @@
 "use strict";
 
-SocialNetwork.factory('postServices', function ($resource) {
-    var resourse = $resource(
-        baseServiceUrl + 'Posts/:id',
-        { id: '@id'},
-        { update: {
-                method: 'PUT'
-            }
+SocialNetwork.factory('postServices', function ($http, baseServiceUrl) {
+
+    var postService = {},
+        postServiceUrl = baseServiceUrl + '/Posts/';
+
+    postService.params = {};
+
+    postService.createNewPost = function (newPostData) {
+        var defer = $q.defer();
+
+        $http.post(
+            postServiceUrl,
+            {
+                params: this.params,
+                headers: this.headers()
+            },
+            newPostData)
+        .success(function (data, status, headers, config) {
+            defer.resolve(data, status, headers, config);
+        })
+        .error(function (data, status, headers, config) {
+            defer.reject(data, status, headers, config);
         });
 
-    function createNewPost(post) {
-        return resourse.save(post);
+        return defer.promise;
     };
 
-    function getPostById(id) {
-        return resourse.get({id: id});
+    postService.getPostById = function (postId) {
+        var defer = $q.defer(),
+            serviceUrl = postServiceUrl + postId;
+
+        $http.get(
+            serviceUrl,
+            {
+                params: this.params,
+                headers: this.headers()
+            })
+            .success(function (data, status, headers, config) {
+                defer.resolve(data, status, headers, config);
+            })
+            .error(function (data, status, headers, config) {
+                defer.reject(data, status, headers, config);
+            });
+
+        return defer.promise;
     };
 
-    function editPost(id, postContent) {
-        return resourse.update({id: id}, postContent);
+    postService.editPost = function (postId, editPostContent) {
+        var defer = $q.defer(),
+            serviceUrl = postServiceUrl + postId;
+
+        $http.put(
+            serviceUrl,
+            {
+                params: this.params,
+                headers: this.headers()
+            },
+            editPostContent)
+            .success(function (data, status, headers, config) {
+                defer.resolve(data, status, headers, config);
+            })
+            .error(function (data, status, headers, config) {
+                defer.reject(data, status, headers, config);
+            });
+
+        return defer.promise;
     };
 
-    function deletePost(id) {
-        return resourse.delete({id: id});
+    postService.deletePost = function (postId) {
+        var defer = $q.defer(),
+            serviceUrl = postServiceUrl + postId;
+
+        $http.delete(
+            serviceUrl,
+            {
+                params: this.params,
+                headers: this.headers()
+            })
+            .success(function (data, status, headers, config) {
+                defer.resolve(data, status, headers, config);
+            })
+            .error(function (data, status, headers, config) {
+                defer.reject(data, status, headers, config);
+            });
+
+        return defer.promise;
     };
 
-    function getNumberOfPostLikes(id) {
-        var idForLikes = id + '/likes';
+    postService.getNumberOfPostLikes = function (postId) {
+        var defer = $q.defer(),
+            serviceUrl = postServiceUrl + postId + '/likes';
 
-        return resourse.get({id: idForLikes});
+        $http.get(
+            serviceUrl,
+            {
+                params: this.params,
+                headers: this.headers()
+            })
+            .success(function (data, status, headers, config) {
+                defer.resolve(data, status, headers, config);
+            })
+            .error(function (data, status, headers, config) {
+                defer.reject(data, status, headers, config);
+            });
+
+        return defer.promise;
     };
 
-    function getPostLikesUsers(id) {
-        var idForLikes = id + '/likes/preview';
+    postService.getPostLikesUsers = function (postId) {
+        var defer = $q.defer(),
+            serviceUrl = postServiceUrl + postId + '/likes/preview';
 
-        return resourse.get({id: idForLikes});
+        $http.get(
+            serviceUrl,
+            {
+                params: this.params,
+                headers: this.headers()
+            })
+            .success(function (data, status, headers, config) {
+                defer.resolve(data, status, headers, config);
+            })
+            .error(function (data, status, headers, config) {
+                defer.reject(data, status, headers, config);
+            });
+
+        return defer.promise;
     };
 
-    function likePost(id) {
-        var idOfPost = id + '/likes';
-        
-        return resourse.getAllResponseHeaders({id: idOfPost});        
+    postService.likePost = function (postId) {
+        var defer = $q.defer(),
+            serviceUrl = postServiceUrl + postId + '/likes';
+
+        $http.post(
+            serviceUrl,
+            {
+                params: this.params,
+                headers: this.headers()
+            })
+            .success(function (data, status, headers, config) {
+                defer.resolve(data, status, headers, config);
+            })
+            .error(function (data, status, headers, config) {
+                defer.reject(data, status, headers, config);
+            });
+
+        return defer.promise;
     };
 
-    function unlikePost(id) {
-        var idOfPost = id + '/likes';
+    postService.unlikePost = function unlikePost(postId) {
+        var defer = $q.defer(),
+            serviceUrl = postServiceUrl + postId + '/likes';
 
-        return resourse.get({id: idOfPost});
+        $http.delete(
+            serviceUrl,
+            {
+                params: this.params,
+                headers: this.headers()
+            })
+            .success(function (data, status, headers, config) {
+                defer.resolve(data, status, headers, config);
+            })
+            .error(function (data, status, headers, config) {
+                defer.reject(data, status, headers, config);
+            });
+
+        return defer.promise;
     };
+
+    postService.headers = function () {
+        var token = localStorage['sessionToken'] || undefined;
+
+        return token;
+    };
+
+    postService.clearParams = function () {
+        postService.params.status = null;
+        postService.params.startPage = 1;
+    };
+
+    postService.clearParams();
+    postService.params.pageSize = 5;
+
+    return postService;
 });
