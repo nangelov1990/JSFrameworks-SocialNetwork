@@ -1,6 +1,6 @@
 "use strict";
 
-SocialNetwork.factory('profileData', function ($resource) {
+SocialNetwork.factory('profileServices', function ($resource) {
     var resource = $resource(
         baseServiceUrl
     )

@@ -1,6 +1,6 @@
 "use strict";
 
-SocialNetwork.factory('usersData', function ($resource) {
+SocialNetwork.factory('userServices', function ($resource) {
     var resource = $resource(
         baseServiceUrl + 'users/',
         { id: '@id' },
