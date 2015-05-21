@@ -9,8 +9,6 @@ SocialNetwork.factory('postsData', function ($resource) {
             }
         });
 
-
-
     function createNewPost(post) {
         return resourse.save(post);
     };
