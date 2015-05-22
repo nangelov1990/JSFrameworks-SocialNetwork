@@ -1,0 +1,35 @@
+<h1>Social Network</h1>
+
+<div id="loginForm">
+    <form>
+        <label for="username" ng-model="loginUsername">Username</label><br/>
+        <input type="text" class="username"/><br/>
+        <label for="password" ng-model="loginPassword">Password</label><br/>
+        <input type="password" class="password"/><br/>
+
+        <button ng-click="">Login</button> <!--TODO: loginFuctionality-->
+    </form>
+</div>
+
+<div id="registerForm">
+    <form>
+        <label for="username">Username</label><br/>
+        <input type="text" id="username" ng-model="registerUsername"/><br/>
+        <label for="password">Password</label><br/>
+        <input type="password" id="password"/><br/>
+        <label for="confirmRegisterPassword">Confirm Password</label><br/>
+        <input type="password" id="confirmRegisterPassword"/><br/>
+        <label for="registerName">Name</label><br/>
+        <input type="text" id="registerName"/><br/>
+        <label for="registerEmail">Name</label><br/>
+        <input type="email" id="registerEmail"/><br/>
+        <label for="registerGender">Name</label><br/>
+        <div id="registerGender">
+            <input type="radio" value="male">Male
+            <input type="radio" value="female">Female
+            <input type="radio" value="other">Other
+        </div>
+
+        <button ng-click="">Register</button> <!--TODO: RegisterFuctionality-->
+    </form>
+</div>
