@@ -1,26 +1,44 @@
 "use strict";
 
-SocialNetwork.controller('authenticationController', function ($scope, authenticationService) {
-    var loggedUser = function () {
-    //    TODO: redirect to news feed page
-        $scope.logged = true;
+SocialNetwork.controller('authenticationController', function ($scope, $location, $route, authenticationService, profileServices) {
+    $scope.authentication = {};
 
-        // TODO: delete the following
-        console.log($scope.logged);
+    var loadCurrentUserInfo = function () {
+        profileServices.getDataAboutMe()
+            .then(function (serverData) {
+                $scope.currentUser = serverData;
+                profileServices.getFriendRequests()
+                    .then(function (serverData) {
+                        $scope.currentUser['friendRequests'] = serverData || 0;
+                    }, function (err) {
+                        console.error(err.message);
+                    });
+            }, function (err) {
+                console.error(err.message)
+            });
+    };
+    var loggedUser = function (serverData) {
+        $scope.loginData = {};
+        authenticationService.setCredentials(serverData);
+        $route.reload();
+        loadCurrentUserInfo();
+
+        $scope.authentication.loggedIn = (sessionStorage['sessionToken'] && sessionStorage['username']) ? true : false;
+
+    //    TODO: redirect to news feed page
     };
     var logoutUser = function () {
-    //    TODO: redirect to login/reg screen
-        $scope.logged = false;
+        $scope.currentUser = {};
+        authenticationService.clearCredentials();
+        $location.path('/');
 
-        // TODO: delete the following
-        console.log($scope.logged);
+        $scope.authentication.loggedIn = (sessionStorage['sessionToken'] && sessionStorage['username']) ? true : false;
     };
 
     $scope.loginUser = function () {
         authenticationService.login($scope.loginData)
             .then(function (serverData) {
-                authenticationService.setCredentials(serverData);
-                loggedUser();
+                loggedUser(serverData);
             }, function (err) {
                 console.error(err.error_description);
             });
@@ -29,8 +47,7 @@ SocialNetwork.controller('authenticationController', function ($scope, authentic
     $scope.registerUser = function () {
         authenticationService.register($scope.registerData)
             .then(function (serverData) {
-                authenticationService.setCredentials(serverData);
-                loggedUser();
+                loggedUser(serverData);
             }, function (err) {
                 console.error(err.message);
             });
@@ -39,13 +56,12 @@ SocialNetwork.controller('authenticationController', function ($scope, authentic
     $scope.logout = function () {
         authenticationService.logout()
             .then(function () {
-                authenticationService.clearCredentials();
                 logoutUser();
             }, function (err) {
                 console.error(err.message);
             });
+
     };
 
-    $scope.logged = (sessionStorage['sessionToken'] && sessionStorage['username']) ? true : false;
-    //$scope.logged = false;
+    $scope.authentication.loggedIn = (sessionStorage['sessionToken'] && sessionStorage['username']) ? true : false;
 });

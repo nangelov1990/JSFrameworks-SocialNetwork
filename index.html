@@ -7,26 +7,25 @@
     <script src="node_modules/angular-route/angular-route.js/"></script>
 </head>
 <body>
-    <!-- TODO: directive for navbar, only if user logged-->
-
     <div ng-view></div>
-
-    <div ng-controller="profileController">
-        <button ng-click="getNewsFeedPages()">BUTTON</button>
-    </div>
-
-    <div ng-controller="authenticationController">
-        <button ng-click="logout()">Logout</button>
-        {{ logged }}
-    </div>
 
     <!-- TODO: include all *.js files-->
     <script src="scripts/app.js"></script>
-    <script src="scripts/controllers/navbarController.js"></script>
+
     <script src="scripts/controllers/authenticationController.js"></script>
-    <script src="scripts/services/authenticationService.js"></script>
-    <script src="scripts/directives/navbarDirective.js"></script>
     <script src="scripts/controllers/profileController.js"></script>
+    <script src="scripts/controllers/commentController.js"></script>
+    <script src="scripts/controllers/postController.js"></script>
+    <script src="scripts/controllers/userController.js"></script>
+
     <script src="scripts/services/$http/restServices.js"></script>
+    <script src="scripts/services/authenticationService.js"></script>
+    <script src="scripts/services/commentServices.js"></script>
+    <script src="scripts/services/postServices.js"></script>
+    <script src="scripts/services/profileServices.js"></script>
+    <script src="scripts/services/userServices.js"></script>
+
+    <script src="scripts/directives/navbarDirective.js"></script>
+    <script src="scripts/directives/logoutButtonDirective.js"></script>
 </body>
 </html>

@@ -6,11 +6,18 @@ SocialNetwork.constant('baseServiceUrl', 'http://softuni-social-network.azureweb
 
 SocialNetwork.config(function ($routeProvider, $locationProvider) {
     $routeProvider
-        .when('/login', {
+        .when('/', {
+            templateUrl: 'partials/homeScreen.html',
+            controller: 'authenticationController'
+        })
+        .when('/logout', {
             templateUrl: 'partials/loginRegisterView.html',
             controller: 'authenticationController'
         })
-        .otherwise({redirectTo: '/login'});
+        .otherwise({redirectTo: '/'});
 
-     //$locationProvider.html5Mode(true);
+    //$locationProvider.html5Mode({
+    //    enabled: true,
+    //    requireBase: false
+    //});
 });

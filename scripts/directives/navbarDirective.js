@@ -3,7 +3,7 @@
 SocialNetwork.directive('navbarDirective', function ($compile) {
     return {
         restrict: 'A',
-        templateUrl: 'partials/loggedUserNavigation.html',
-        controller: 'navbarController'
+        templateUrl: 'partials/directives/loggedUserNavigation.html',
+        controller: 'authenticationController'
     };
 });

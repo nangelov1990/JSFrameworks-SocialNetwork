@@ -1,8 +1,6 @@
 <h1>Social Network</h1>
 
-<div navbar-directive ng-show="logged"></div>
-
-<div id="loginForm">
+<div id="loginForm" ng-controller="authenticationController">
     <label>Username</label><br/>
     <input type="text" class="username" ng-model="loginData.username"/><br/>
     <label>Password</label><br/>
