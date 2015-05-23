@@ -1,35 +1,31 @@
 <h1>Social Network</h1>
 
 <div id="loginForm">
-    <form>
-        <label for="username" ng-model="loginUsername">Username</label><br/>
-        <input type="text" class="username"/><br/>
-        <label for="password" ng-model="loginPassword">Password</label><br/>
-        <input type="password" class="password"/><br/>
+    <label>Username</label><br/>
+    <input type="text" class="username" ng-model="loginData.username"/><br/>
+    <label>Password</label><br/>
+    <input type="password" class="password" ng-model="loginData.password"/><br/>
 
-        <button ng-click="">Login</button> <!--TODO: loginFuctionality-->
-    </form>
+    <button ng-click="loginUser()">Login</button> <!--TODO: loginFuctionality-->
 </div>
 
 <div id="registerForm">
-    <form>
-        <label for="username">Username</label><br/>
-        <input type="text" id="username" ng-model="registerUsername"/><br/>
-        <label for="password">Password</label><br/>
-        <input type="password" id="password"/><br/>
-        <label for="confirmRegisterPassword">Confirm Password</label><br/>
-        <input type="password" id="confirmRegisterPassword"/><br/>
-        <label for="registerName">Name</label><br/>
-        <input type="text" id="registerName"/><br/>
-        <label for="registerEmail">Name</label><br/>
-        <input type="email" id="registerEmail"/><br/>
-        <label for="registerGender">Name</label><br/>
-        <div id="registerGender">
-            <input type="radio" value="male">Male
-            <input type="radio" value="female">Female
-            <input type="radio" value="other">Other
-        </div>
+    <label>Username</label><br/>
+    <input type="text" class="username" ng-model="registerData.username"/><br/>
+    <label>Password</label><br/>
+    <input type="password" class="password" ng-model="registerData.password"/><br/>
+    <label>Confirm Password</label><br/>
+    <input type="password" class="password" ng-model="registerData.confirmPassword"/><br/>
+    <label>Name</label><br/>
+    <input type="text" class="namw" ng-model="registerData.name"/><br/>
+    <label>Email</label><br/>
+    <input type="email" class="email" ng-model="registerData.email"/><br/>
+    <label>Gender</label><br/>
+    <div class="gender">
+        <input type="radio" ng-model="registerData.gender" value="male" checked />Male
+        <input type="radio" ng-model="registerData.gender" value="female" />Female
+        <input type="radio" ng-model="registerData.gender" value="other" />Other
+    </div>
 
-        <button ng-click="">Register</button> <!--TODO: RegisterFuctionality-->
-    </form>
+    <button ng-click="registerUser()">Register</button> <!--TODO: RegisterFuctionality-->
 </div>

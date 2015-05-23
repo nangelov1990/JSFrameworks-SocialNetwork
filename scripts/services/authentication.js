@@ -1,12 +1,34 @@
 "use strict";
 
-SocialNetwork.factory('authenticaiton', function ($http, baseServiceUrl) {
-    var authentiocation ={},
-        authentiocationUrl = baseServiceUrl + '/users/';
+SocialNetwork.factory('authenticationService', function (baseServiceUrl, restServices) {
+    var service ={},
+        serviceUrl = baseServiceUrl + '/users/';
 
-    authentiocation.params = {};
+    var getHeaders = function() {
+        var headers = {};
+        if (sessionStorage['sessionToken']) {
+            headers['Authorization'] = sessionStorage['sessionToken'];
+        };
 
-    authentiocation.register = function () {
-        
-    }
+        return headers;
+    };
+
+    service.params = {};
+
+    service.login = function (loginData) {
+        var loginUrl = serviceUrl + 'login';
+
+        return restServices.save(loginUrl, loginData);
+    };
+
+    service.setCredentials = function (serverData) {
+        sessionStorage['sessionToken'] = serverData.token_type + ' ' + serverData.access_token;
+        sessionStorage['username'] = serverData.userName;
+    };
+
+    service.clearCredentials = function () {
+        sessionStorage.clear();
+    };
+
+    return service;
 });
