@@ -1,5 +1,4 @@
 "use strict";
 
-SocialNetwork.factory('commentServices', function () {
-
+SocialNetwork.factory('commentServices', function (baseServiceUrl, restServices) {
 });

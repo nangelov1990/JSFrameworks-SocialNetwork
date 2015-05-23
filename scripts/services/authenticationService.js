@@ -1,19 +1,8 @@
 "use strict";
 
 SocialNetwork.factory('authenticationService', function (baseServiceUrl, restServices) {
-    var service ={},
+    var service = {},
         serviceUrl = baseServiceUrl + 'users/';
-
-    var getHeaders = function() {
-        var headers = {};
-        if (sessionStorage['sessionToken']) {
-            headers['Authorization'] = sessionStorage['sessionToken'];
-        };
-
-        return headers;
-    };
-
-    service.params = {};
 
     service.login = function (data) {
         var url = serviceUrl + 'login';
@@ -28,10 +17,9 @@ SocialNetwork.factory('authenticationService', function (baseServiceUrl, restSer
     };
 
     service.logout = function () {
-        var url = serviceUrl + 'logout',
-            headers = getHeaders();
+        var url = serviceUrl + 'logout';
 
-        return restServices.save(url, null, headers);
+        return restServices.save(url);
     }
 
     service.setCredentials = function (serverData) {
