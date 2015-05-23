@@ -11,7 +11,7 @@ SocialNetwork.config(function ($routeProvider, $locationProvider) {
             controller: 'authenticationController'
         })
         .when('/logout', {
-            templateUrl: 'partials/loginRegisterView.html',
+            templateUrl: 'partials/homeScreen.html',
             controller: 'authenticationController'
         })
         .otherwise({redirectTo: '/'});

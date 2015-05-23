@@ -1,5 +1,5 @@
 <div id="navbar">
-    <a href="/users/{{currentUser.username}}">
+    <a href="/users/{{currentUser.username}}">LINK
         <p>{{currentUser.name}}</p>
         <img id="userImg" value="{{currentUser.profileImage}}"/>
     </a>
@@ -8,7 +8,7 @@
     <p ng-click="">Friend Requests: {{currentUser.friendRequests.length}}</p>
     <a href="#/profile"><p>Edit Profile</p></a>
     <a href="#/profile/password"><p>Change Password</p></a>
-    <div logout-button-directive></div>
+    <a href="#/logout" ng-click="authentication.logout()"><p>LOGOUT</p></a>
 
     <!--TODO: Set up search bar-->
     <p>SEARCH BAR</p>

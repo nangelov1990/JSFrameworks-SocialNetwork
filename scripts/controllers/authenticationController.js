@@ -10,6 +10,7 @@ SocialNetwork.controller('authenticationController', function ($scope, $location
                 profileServices.getFriendRequests()
                     .then(function (serverData) {
                         $scope.currentUser['friendRequests'] = serverData || 0;
+                        sessionStorage['currentUser'] = JSON.stringify($scope.currentUser);
                     }, function (err) {
                         console.error(err.message);
                     });
@@ -20,7 +21,6 @@ SocialNetwork.controller('authenticationController', function ($scope, $location
     var loggedUser = function (serverData) {
         $scope.loginData = {};
         authenticationService.setCredentials(serverData);
-        $route.reload();
         loadCurrentUserInfo();
 
         $scope.authentication.loggedIn = (sessionStorage['sessionToken'] && sessionStorage['username']) ? true : false;
@@ -35,7 +35,7 @@ SocialNetwork.controller('authenticationController', function ($scope, $location
         $scope.authentication.loggedIn = (sessionStorage['sessionToken'] && sessionStorage['username']) ? true : false;
     };
 
-    $scope.loginUser = function () {
+    $scope.authentication.loginUser = function () {
         authenticationService.login($scope.loginData)
             .then(function (serverData) {
                 loggedUser(serverData);
@@ -44,7 +44,7 @@ SocialNetwork.controller('authenticationController', function ($scope, $location
             });
     };
 
-    $scope.registerUser = function () {
+    $scope.authentication.registerUser = function () {
         authenticationService.register($scope.registerData)
             .then(function (serverData) {
                 loggedUser(serverData);
@@ -53,7 +53,7 @@ SocialNetwork.controller('authenticationController', function ($scope, $location
             });
     };
 
-    $scope.logout = function () {
+    $scope.authentication.logout = function () {
         authenticationService.logout()
             .then(function () {
                 logoutUser();
@@ -64,4 +64,5 @@ SocialNetwork.controller('authenticationController', function ($scope, $location
     };
 
     $scope.authentication.loggedIn = (sessionStorage['sessionToken'] && sessionStorage['username']) ? true : false;
+    (sessionStorage['currentUser']) ? $scope.currentUser = JSON.parse(sessionStorage['currentUser']) : $scope.currentUser = undefined;
 });
