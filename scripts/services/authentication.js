@@ -2,7 +2,7 @@
 
 SocialNetwork.factory('authenticationService', function (baseServiceUrl, restServices) {
     var service ={},
-        serviceUrl = baseServiceUrl + '/users/';
+        serviceUrl = baseServiceUrl + 'users/';
 
     var getHeaders = function() {
         var headers = {};
@@ -15,11 +15,24 @@ SocialNetwork.factory('authenticationService', function (baseServiceUrl, restSer
 
     service.params = {};
 
-    service.login = function (loginData) {
-        var loginUrl = serviceUrl + 'login';
+    service.login = function (data) {
+        var url = serviceUrl + 'login';
 
-        return restServices.save(loginUrl, loginData);
+        return restServices.save(url, data);
     };
+
+    service.register = function (data) {
+        var url = serviceUrl + 'register';
+
+        return restServices.save(url, data);
+    };
+
+    service.logout = function () {
+        var url = serviceUrl + 'logout',
+            headers = getHeaders();
+
+        return restServices.save(url, null, headers);
+    }
 
     service.setCredentials = function (serverData) {
         sessionStorage['sessionToken'] = serverData.token_type + ' ' + serverData.access_token;
