@@ -1,0 +1,16 @@
+.wrapper {
+    text-align: center;
+}
+
+.form {
+    padding: 10px;
+    margin: 0 20px;
+    border: 2px solid black;
+    display: inline-table;
+    text-align: left;
+}
+
+.buttons {
+    text-align: center;
+    padding: 20px 0;
+}

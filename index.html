@@ -3,13 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Social Network</title>
+
+    <link rel="stylesheet" href="styles/app.css"/>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/blog-post.css" rel="stylesheet">
+
     <script src="node_modules/angular/angular.js/"></script>
     <script src="node_modules/angular-route/angular-route.js/"></script>
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="node_modules/angular-bootstrap/dist/ui-bootstrap-tpls.js"></script>
 </head>
 <body>
     <div ng-view></div>
 
     <!-- TODO: include all *.js files-->
+    <script src="scripts/tools/stringTools.js"></script>
+
+    <script src="lib/nhpup_1.1.js"></script>
     <script src="scripts/app.js"></script>
 
     <script src="scripts/controllers/authenticationController.js"></script>
@@ -17,6 +28,7 @@
     <script src="scripts/controllers/commentController.js"></script>
     <script src="scripts/controllers/postController.js"></script>
     <script src="scripts/controllers/userController.js"></script>
+    <script src="scripts/controllers/popoverController.js"></script>
 
     <script src="scripts/services/$http/restServices.js"></script>
     <script src="scripts/services/authenticationService.js"></script>
@@ -26,5 +38,8 @@
     <script src="scripts/services/userServices.js"></script>
 
     <script src="scripts/directives/navbarDirective.js"></script>
+    <script src="scripts/directives/logoutDirective.js"></script>
+
+    <script src="scripts/directives/popovers.js"></script>
 </body>
 </html>

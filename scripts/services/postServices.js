@@ -47,7 +47,7 @@ SocialNetwork.factory('postServices', function (baseServiceUrl, restServices) {
     service.unlikePost = function (postId) {
         var url = serviceUrl + postId + '/likes';
 
-        return restServices.delete(url);
+        return restServices.remove(url);
     };
 
     return service;

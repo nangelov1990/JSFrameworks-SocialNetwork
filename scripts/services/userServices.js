@@ -52,7 +52,7 @@ SocialNetwork.factory('userServices', function (baseServiceUrl, restServices) {
     };
 
     // TODO: check functionality
-    service.setParams();
+    //service.setParams();
 
     return service;
 });
