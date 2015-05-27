@@ -6,47 +6,33 @@ SocialNetwork.constant('baseServiceUrl', 'http://softuni-social-network.azureweb
 
 SocialNetwork.config(function ($routeProvider, $locationProvider) {
     $routeProvider
-        // TODO: perform cleanup
-        //.when('/', {
-        //    templateUrl: 'partials/homeScreen.html',
-        //    controller: 'authenticationController'
-        //})
         .when('/', {
             templateUrl: function () {
                 if (sessionStorage['sessionToken']) {
                     return 'partials/newsFeedView.html'
                 } else {
-                    return 'partials/notLoggedScreen.html';
+                    return 'partials/notLoggedView.html';
                 }
             }
         })
         .when('/logout', {
-            templateUrl: 'partials/notLoggedScreen.html',
+            templateUrl: 'partials/notLoggedView.html',
             controller: 'authenticationController'
         })
         .when('/users/:username', {
-            templateUrl: 'partials/userProfileView.html',
-            controller: 'loadUserProfile'
+            templateUrl: 'partials/userProfileView.html'
         })
-        .when('', {
-
+        .when('/profile', {
+            //template: 'EDIT PROF'
+            templateUrl: 'partials/editUserProfileVIew.html'
         })
-        .when('', {
-
+        .when('/profile/password', {
+            templateUrl: 'partials/editUserPassword.html'
         })
-        .when('', {
+        .otherwise({ redirectTo: '/' });
 
-        })
-        .when('', {
-
-        })
-        .when('', {
-
-        })
-        .otherwise({redirectTo: '/'});
-
-    $locationProvider.html5Mode({
-        enabled: true,
-        requireBase: false
-    });
+    //$locationProvider.html5Mode({
+    //    enabled: true,
+    //    requireBase: false
+    //});
 });

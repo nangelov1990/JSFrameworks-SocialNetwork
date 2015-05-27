@@ -22,14 +22,7 @@ SocialNetwork.controller('profileController', function ($scope, profileServices,
         profileServices.getNewsFeedPages()
             .then(function (serverPostData) {
                 serverPostData.forEach(function (post) {
-                    commentServices.getPostComments(post.id)
-                        .then(function (serverCommentData) {
-                            serverCommentData.forEach(function (comment) {
-                                var editable = comment.author.username == sessionStorage['username'];
-                                console.log(editable);
-                                comment['editableComment'] = editable;
-                            });
-                        });
+                    commentServices.getPostComments(post.id);
                 });
                 $scope.profile.newsFeedPosts = serverPostData;
                 console.log($scope.profile.newsFeedPosts);
