@@ -34,9 +34,37 @@ SocialNetwork.controller('commentController', function ($scope, $route, commentS
 
         commentServices.addCommentToPost(postId, commentContent)
             .then(function (data) {
-                console.log(data);
+                var currentPost = $scope.profile.newsFeedPosts
+                    .filter(function (post) {
+                        return post.id === postId;
+                    })[0];
+
                 $scope.comments.showAddForm = false;
-                $route.reload();
+                currentPost.comments.push(data);
+                currentPost.totalCommentsCount++;
+            }, function (err) {
+                console.error(err);
+            });
+    };
+
+    $scope.comments.deleteComment = function (postId, commentId) {
+        commentServices.deleteComment(postId, commentId)
+            .then(function (data) {
+                var currentPost = $scope.profile.newsFeedPosts
+                    .filter(function (post) {
+                        return post.id == postId;
+                    })[0],
+                    comment = currentPost.comments
+                        .filter(function (comment) {
+                            return comment.id === commentId;
+                        })[0],
+                    indexOfComment = currentPost.comments.indexOf(comment);
+
+                currentPost.comments.splice(indexOfComment, 1);
+                currentPost.totalCommentsCount--;
+
+                // TODO: notify service, remove log;
+                console.log(data);
             }, function (err) {
                 console.error(err);
             });

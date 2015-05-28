@@ -9,25 +9,25 @@ SocialNetwork.config(function ($routeProvider, $locationProvider) {
         .when('/', {
             templateUrl: function () {
                 if (sessionStorage['sessionToken']) {
-                    return 'partials/newsFeedView.html'
+                    return 'partials/news-feed.html'
                 } else {
-                    return 'partials/notLoggedView.html';
+                    return 'partials/not-logged-screen.html';
                 }
             }
         })
         .when('/logout', {
-            templateUrl: 'partials/notLoggedView.html',
+            templateUrl: 'partials/not-logged-screen.html',
             controller: 'authenticationController'
         })
         .when('/users/:username', {
-            templateUrl: 'partials/userProfileView.html'
+            templateUrl: 'partials/user-profile.html',
+            controller: 'userController'
         })
         .when('/profile', {
-            //template: 'EDIT PROF'
-            templateUrl: 'partials/editUserProfileVIew.html'
+            templateUrl: 'partials/edit-user-profile.html'
         })
         .when('/profile/password', {
-            templateUrl: 'partials/editUserPassword.html'
+            templateUrl: 'partials/edit-user-password.html'
         })
         .otherwise({ redirectTo: '/' });
 

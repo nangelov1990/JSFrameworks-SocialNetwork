@@ -18,6 +18,7 @@ SocialNetwork.controller('authenticationController', function ($scope, $location
     $scope.authentication.loginUser = function () {
         authenticationService.login($scope.loginData)
             .then(function (serverData) {
+                console.log(serverData);
                 loggedUser(serverData);
             }, function (err) {
                 console.error(err.error_description);

@@ -2,14 +2,14 @@
     <div class="container">
         <a href="#/users/{{ currentUser.username }}">
             <p>{{ currentUser.name }}</p>
-            <img id="userImg" value="{{ currentUser.profileImage }}"/>
+            <img id="userImg" ng-src="{{ currentUser.profileImageData }}"/>
         </a>
 
         <!--TODO: Set up functionality-->
         <p ng-click="profile.getFriendRequests()" ng-controller="popoverController" popover-placement="bottom" popover-trigger="click" popover-template="partials/popovers/friendRequestPopover.html" popover-title="{{popovers.friendRequest.title}}" >Friend Requests: {{currentUser.friendRequests.length}}</p> <!-- TODO: set up popup-->
         <a href="#/profile"><p>Edit Profile</p></a>
         <a href="#/profile/password"><p>Change Password</p></a>
-        <a href="#/logout" logout-directive></a>
+        <a href="#/logout" logout></a>
 
         <!--TODO: Set up search bar-->
         <input type="text" placeholder="Search..." ng-controller="userController" ng-change="user.searchUsersByName(user.searchName)" ng-model="user.searchName">{{ user.searchName }}

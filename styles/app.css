@@ -14,3 +14,18 @@
     text-align: center;
     padding: 20px 0;
 }
+
+.comment {
+    border: 1px solid red;
+    margin-left: 5%;
+    border-radius: 10px;
+    padding: 10px 25px 40px;
+    display: inline-block;
+}
+
+.post {
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 10px 25px 40px;
+    display: inline-block;
+}

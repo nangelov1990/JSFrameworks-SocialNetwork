@@ -4,6 +4,6 @@ SocialNetwork.controller('popoverController', function ($scope) {
     $scope.popovers = {};
 
     $scope.popovers.friendRequest = {
-        templateUrl: 'partials/popovers/friendRequestPopover.html'
+        templateUrl: 'partials/popovers/friend-request-popover.html'
     };
 });

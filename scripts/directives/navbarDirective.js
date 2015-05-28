@@ -1,9 +1,9 @@
 "use strict";
 
-SocialNetwork.directive('navbarDirective', function ($compile) {
+SocialNetwork.directive('navbar', function ($compile) {
     return {
         restrict: 'A',
-        templateUrl: 'partials/directives/loggedUserNavigation.html',
+        templateUrl: 'partials/directives/navbar.html',
         controller: 'profileController'
     };
 });

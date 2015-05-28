@@ -8,6 +8,7 @@ SocialNetwork.controller('profileController', function ($scope, profileServices,
         profileServices.getDataAboutMe()
             .then(function (serverData) {
                 $scope.currentUser = serverData;
+
                 profileServices.getFriendRequests()
                     .then(function (serverData) {
                         $scope.currentUser['friendRequests'] = serverData || 0;
@@ -21,11 +22,7 @@ SocialNetwork.controller('profileController', function ($scope, profileServices,
     var getNewsFeedPages = function () {
         profileServices.getNewsFeedPages()
             .then(function (serverPostData) {
-                serverPostData.forEach(function (post) {
-                    commentServices.getPostComments(post.id);
-                });
                 $scope.profile.newsFeedPosts = serverPostData;
-                console.log($scope.profile.newsFeedPosts);
             }, function (err) {
                 console.error(err);
             });
@@ -34,7 +31,6 @@ SocialNetwork.controller('profileController', function ($scope, profileServices,
         profileServices.getMyFriendsPreview()
             .then(function (data) {
                 $scope.profile.previewFriends = data;
-                console.log($scope.profile.previewFriends);
             }, function (err) {
                 console.error(err);
             });
@@ -50,8 +46,8 @@ SocialNetwork.controller('profileController', function ($scope, profileServices,
     };
 
     $scope.profile.approveFriendRequest = function () {
-
-    }
+        // TODO
+    };
 
     loadCurrentUserInfo();
     getNewsFeedPages();

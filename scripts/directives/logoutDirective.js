@@ -1,9 +1,9 @@
 "use strict";
 
-SocialNetwork.directive('logoutDirective', function ($compile) {
+SocialNetwork.directive('logout', function ($compile) {
     return {
         restrict: 'A',
-        templateUrl: 'partials/directives/logoutButton.html',
+        templateUrl: 'partials/directives/logout-button.html',
         controller: 'authenticationController'
     };
 });
