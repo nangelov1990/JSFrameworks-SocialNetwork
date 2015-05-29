@@ -1,17 +1,9 @@
-<div ng-controller="profileController">
+<div ng-controller="newsFeedController"> <!-- TODO: clean up: ng-controller="profileController"-->
     <div navbar></div>
 
     <!--TODO: style-->
     <h1>NEWS FEED</h1>
     <div posts></div>
 
-    <ul>
-        <h2>Friends - <a href="users/{{ currentUser.username }}/friends">{{ profile.previewFriends.totalCount }}</a> total</h2>
-        <li ng-repeat="friend in profile.previewFriends.friends">
-            <a href="/users/{{friend.username}}">
-                <img src="" alt=""/>
-                <h3 class="{{friend.id}} name">{{friend.name}}</h3>
-            </a>
-        </li>
-    </ul>
+    <div friend-list-preview></div>
 </div>

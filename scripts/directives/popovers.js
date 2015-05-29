@@ -9,4 +9,4 @@ SocialNetwork.directive('toggle', function(){
             $(element).popover();
         }
     };
-})
+});

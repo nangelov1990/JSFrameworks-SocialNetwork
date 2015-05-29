@@ -21,7 +21,7 @@
             </div>
             <div ng-controller="commentController" class="edit-comment" ng-if="comment.author.username == profile.myUsername">
                 <input type="checkbox" ng-model="comments.showEditForm" data-ng-hide="comments.showEditForm" />Edit Comment
-                <div id="editComment{{post.id}}" class="addCommentForm" data-ng-show="comments.showEditForm">
+                <div id="editComment-{{ post.id }}" class="addCommentForm" data-ng-show="comments.showEditForm">
                     <input type="text" ng-model="comments.editCommentContent"/>
                     <button ng-click="comments.editComment(post.id, comment.id, comments.editCommentContent)">Edit</button>
                 </div>

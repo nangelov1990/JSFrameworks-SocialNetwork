@@ -1,0 +1,15 @@
+<div id="postbox" class="addPostForm">
+    <input type="text" ng-model="posts.newPostContent"/>
+
+    <div>
+        <a href="#/users/{{ loggedUser.username }}">
+            <img id="userImg" ng-src="{{ loggedUser.profileImageData }}"/>
+        </a>
+        as
+        <a href="#/users/{{ loggedUser.username }}">
+            <strong>{{ loggedUser.name }}</strong>
+        </a>
+    </div>
+
+    <button ng-click="posts.addNewPostToUserWall(posts.newPostContent)">Submit</button>
+</div>

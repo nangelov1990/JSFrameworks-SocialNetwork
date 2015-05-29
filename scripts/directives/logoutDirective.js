@@ -7,4 +7,3 @@ SocialNetwork.directive('logout', function ($compile) {
         controller: 'authenticationController'
     };
 });
-

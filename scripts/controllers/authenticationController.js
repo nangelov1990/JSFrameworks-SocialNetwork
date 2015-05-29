@@ -10,7 +10,8 @@ SocialNetwork.controller('authenticationController', function ($scope, $location
         $route.reload();
     };
     var logoutUser = function () {
-        $scope.currentUser = {};
+        $scope.loggedUser = {};
+        delete sessionStorage['loggedUserData'];
         authenticationService.clearCredentials();
         $location.path('/');
     };

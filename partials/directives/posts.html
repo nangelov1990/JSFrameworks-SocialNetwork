@@ -1,7 +1,8 @@
-<div ng-repeat="post in profile.newsFeedPosts">
+<!--<div ng-repeat="post in profile.newsFeedPosts">-->
+<div ng-repeat="post in postsData">
     <div class="post" id="post-{{post.id}}">
         <div class="author-data">
-            <a href="/users/{{post.author.username}}" > <!-- TODO: set up popup-->
+            <a href="#/users/{{post.author.username}}" > <!-- TODO: set up popup-->
                 <img src="" alt=""/>
                 <h3 class="author">{{post.author.name}}</h3>
                 <p class="date">{{post.date | date: 'd MMM yyyy HH:mm:ss'}}</p>
@@ -10,7 +11,7 @@
 
         <div class="postContent">
             <h3>{{post.postContent}}</h3>
-            <div class="likesComments"> <!-- TODO clean up: ng-controller="postController"-->
+            <div class="likesComments">
                 <div class="likes">
                     <span>{{post.likesCount}}</span>
                     <img src="" alt=""/> <!-- TODO: like img-->
