@@ -3,7 +3,7 @@
 
     <div>
         <a href="#/users/{{ loggedUser.username }}">
-            <img id="userImg" ng-src="{{ loggedUser.profileImageData }}"/>
+            <img id="userImg" src="{{ loggedUser.profileImageData }}"/>
         </a>
         as
         <a href="#/users/{{ loggedUser.username }}">
@@ -11,5 +11,5 @@
         </a>
     </div>
 
-    <button ng-click="posts.addNewPostToUserWall(posts.newPostContent)">Submit</button>
+    <button ng-click="posts.addNewPostToUserWall(currentUser.username, posts.newPostContent)">Submit</button>
 </div>

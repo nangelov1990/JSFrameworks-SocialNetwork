@@ -2,7 +2,7 @@
 
 SocialNetwork.factory('postServices', function (baseServiceUrl, restServices) {
     var service = {},
-        serviceUrl = baseServiceUrl + '/Posts/';
+        serviceUrl = baseServiceUrl + 'Posts/';
 
     service.addNewPost = function (data) {
         return restServices.save(serviceUrl, data);

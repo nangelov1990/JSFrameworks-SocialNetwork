@@ -1,7 +1,7 @@
 "use strict";
 
 SocialNetwork.controller('commentController', function ($scope, $route, commentServices) {
-    $scope.comments = {};
+    $scope.comments = $scope.comments || {};
 
     $scope.comments.print = function () {
         console.log($scope.comments.showAddForm);
@@ -78,7 +78,20 @@ SocialNetwork.controller('commentController', function ($scope, $route, commentS
         commentServices.editComment(postId, commentId, commentContent)
             .then(function (data) {
                 console.log(data);
-                $route.reload();
+
+                var currentPost = $scope.postsData
+                        .filter(function (post) {
+                            return post.id == postId;
+                        })[0],
+                    comment = currentPost.comments
+                        .filter(function (comment) {
+                            return comment.id === commentId;
+                        })[0],
+                    editElementId = '#edit-comment_' + commentId + '-text';
+
+                comment.commentContent = data.commentContent;
+                $scope.comments.showEditForm = false;
+                delete $scope.comments.editCommentContent;
             }, function (err) {
                 console.error(err);
             });

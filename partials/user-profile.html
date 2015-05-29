@@ -2,13 +2,13 @@
     <div navbar></div>
 
     <div id="user-data">
-        <img ng-src="{{ currentUser.profileImageData"/>
+        <img src="{{ currentUser.profileImageData }}"/>
 
         <h2>{{ currentUser.name }}</h2>
 
         <div>
             <button ng-show="currentUser.isFriend" disabled="disabled">Friend</button>
-            <button ng-hide="currentUser.isFriend">Add friend</button>
+            <button ng-hide="currentUser.isFriend">Add friend</button> <!--TODO: functionality-->
         </div>
     </div>
 

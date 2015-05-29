@@ -12,6 +12,13 @@ SocialNetwork.controller('navbarController', function ($scope, profileServices) 
                 .then(function (serverData) {
                     $scope.loggedUser = serverData;
 
+                    if ($scope.loggedUser.profileImageData.indexOf('data:image/jpg;base64,') === -1) {
+                        $scope.loggedUser.profileImageData = "data:image/jpg;base64," + $scope.loggedUser.profileImageData;
+                    };
+                    if ($scope.loggedUser.coverImageData.indexOf('data:image/jpg;base64,') === -1) {
+                        $scope.loggedUser.coverImageData = "data:image/jpg;base64," + $scope.loggedUser.coverImageData;
+                    };
+
                     profileServices.getFriendRequests()
                         .then(function (serverData) {
                             $scope.loggedUser['friendRequests'] = serverData || 0;

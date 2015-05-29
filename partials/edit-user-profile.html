@@ -1,1 +1,59 @@
-EDIT USER PROFILE
+<div>
+    <div navbar></div>
+
+    <div>
+        <div class="box">
+            <h1>EDIT PROFILE</h1>
+        </div>
+        <div class="box">
+            <div>
+                <div class="box form">
+                    <img src="{{ loggedUser.profileImageData }}"/>
+
+                    <p>Allowed Format: .jpg</p>
+                    <p>Limit: 128kb</p>
+
+                    <button>UPLOAD</button> <!--TODO: functionality-->
+                </div>
+                <div class="box form">
+                    <div class="box">
+                        <label>
+                            Name
+                            <input type="text" placeholder="Name" ng-model="loggedUser.name"/>
+                        </label>
+
+                        <label>
+                            Email
+                            <input type="text" placeholder="Email" ng-model="loggedUser.email"/>
+                        </label>
+
+                        <form class="gender">
+                            <label>
+                                <input type="radio" ng-model="loggedUser.gender" value="1" />
+                                Male
+                            </label>
+                            <label>
+                                <input type="radio" ng-model="loggedUser.gender" value="2" />
+                                Female
+                            </label>
+                            <label>
+                                <input type="radio" ng-model="loggedUser.gender" value="0" />
+                                Other
+                            </label>
+                        </form>
+                    </div>
+                    <div class="box">
+                        <div>
+                            <button>UPLOAD</button> <!--TODO: functionality-->
+                            Limit: 1024kb
+                        </div>
+                        <div>
+                            <img src="{{ loggedUser.coverImageData }}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button>SAVE CHANGES</button><!--TODO: functionality-->
+        </div>
+    </div>
+</div>

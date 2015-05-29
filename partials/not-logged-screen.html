@@ -27,11 +27,11 @@
             <label>Email</label><br/>
             <input type="email" class="email" ng-model="registerData.email"/><br/>
             <label>Gender</label><br/>
-            <div class="gender">
-                <input type="radio" ng-model="registerData.gender" value="male" checked />Male
-                <input type="radio" ng-model="registerData.gender" value="female" />Female
-                <input type="radio" ng-model="registerData.gender" value="other" />Other
-            </div>
+            <form class="gender" ng-model="registerData.gender">
+                <input type="radio" ng-model="registerData.gender" value="1" checked />Male
+                <input type="radio" ng-model="registerData.gender" value="2" />Female
+                <input type="radio" ng-model="registerData.gender" value="0" />Other
+            </form>
 
             <div class="buttons">
                 <button ng-click="authentication.registerUser()">Register</button>

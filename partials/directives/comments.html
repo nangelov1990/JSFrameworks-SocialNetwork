@@ -2,7 +2,7 @@
     <div ng-repeat="comment in post.comments" class="comment" id="comment-{{comment.id}}">
         <div class="author-data">
             <a href="#/users/{{comment.author.username}}" > <!-- TODO: set up popup-->
-                <img ng-src="comment.author.profileImageData"/>
+                <img src="{{ comment.author.profileImageData }}"/>
                 <h3 class="author">{{comment.author.name}}</h3>
                 <p class="date">{{comment.date | date: 'd MMM yyyy HH:mm:ss'}}</p>
             </a>
@@ -21,11 +21,11 @@
             </div>
             <div ng-controller="commentController" class="edit-comment" ng-if="comment.author.username == profile.myUsername">
                 <input type="checkbox" ng-model="comments.showEditForm" data-ng-hide="comments.showEditForm" />Edit Comment
-                <div id="editComment-{{ post.id }}" class="addCommentForm" data-ng-show="comments.showEditForm">
-                    <input type="text" ng-model="comments.editCommentContent"/>
+                <div class="addCommentForm" data-ng-show="comments.showEditForm">
+                    <input id="edit-comment_{{ comment.id }}-text" type="text" ng-model="comments.editCommentContent"/>
                     <button ng-click="comments.editComment(post.id, comment.id, comments.editCommentContent)">Edit</button>
                 </div>
-                <button ng-click="comments.deleteComment(post.id, comment.id, comments.editCommentContent)">Delete</button>
+                <button ng-click="comments.deleteComment(post.id, comment.id)">Delete</button>
             </div>
         </div>
     </div>

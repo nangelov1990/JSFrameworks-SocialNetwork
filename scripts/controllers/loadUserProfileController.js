@@ -7,6 +7,7 @@ SocialNetwork.controller('loadUserProfileController', function ($scope, $routePa
         userServices.getUserFullData(username)
             .then(function (serverData) {
                 $scope.currentUser = serverData;
+
                 console.log($scope.currentUser);
                 if ($scope.currentUser.isFriend) {
                     $scope.userProfile.getFriendPreviewFriendsList($routeParams.username);

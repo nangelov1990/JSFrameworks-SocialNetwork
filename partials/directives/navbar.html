@@ -1,11 +1,12 @@
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
         <a href="#/users/{{ loggedUser.username }}">
-            <p>{{ loggedUser.name }}</p>
             <img id="navbarLoggedUserImg" ng-src="{{ loggedUser.profileImageData }}"/>
+            <p>{{ loggedUser.name }}</p>
         </a>
 
         <!--TODO: Set up functionality-->
+        <a href="#/"><p>News Feed</p></a>
         <p ng-click="profile.getFriendRequests()" ng-controller="popoverController" popover-placement="bottom" popover-trigger="click" popover-template="partials/popovers/friendRequestPopover.html" popover-title="{{popovers.friendRequest.title}}" >Friend Requests: {{loggedUser.friendRequests.length}}</p> <!-- TODO: set up popup-->
         <a href="#/profile"><p>Edit Profile</p></a>
         <a href="#/profile/password"><p>Change Password</p></a>
