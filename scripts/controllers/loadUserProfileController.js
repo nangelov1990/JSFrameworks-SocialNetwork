@@ -7,6 +7,10 @@ SocialNetwork.controller('loadUserProfileController', function ($scope, $routePa
         userServices.getUserFullData(username)
             .then(function (serverData) {
                 $scope.currentUser = serverData;
+                console.log($scope.currentUser);
+                if ($scope.currentUser.isFriend) {
+                    $scope.userProfile.getFriendPreviewFriendsList($routeParams.username);
+                };
             }, function (err) {
                 console.error(err);
             });
@@ -32,5 +36,4 @@ SocialNetwork.controller('loadUserProfileController', function ($scope, $routePa
 
     $scope.userProfile.getUserFullData($routeParams.username);
     $scope.userProfile.getFriendWallByPages($routeParams.username);
-    $scope.userProfile.getFriendPreviewFriendsList($routeParams.username);
 });

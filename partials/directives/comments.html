@@ -1,8 +1,8 @@
 <div class="post-comments">
     <div ng-repeat="comment in post.comments" class="comment" id="comment-{{comment.id}}">
         <div class="author-data">
-            <a href="/users/{{comment.author.username}}" > <!-- TODO: set up popup-->
-                <img src="" alt=""/>
+            <a href="#/users/{{comment.author.username}}" > <!-- TODO: set up popup-->
+                <img ng-src="comment.author.profileImageData"/>
                 <h3 class="author">{{comment.author.name}}</h3>
                 <p class="date">{{comment.date | date: 'd MMM yyyy HH:mm:ss'}}</p>
             </a>

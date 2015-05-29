@@ -34,7 +34,7 @@ SocialNetwork.controller('commentController', function ($scope, $route, commentS
 
         commentServices.addCommentToPost(postId, commentContent)
             .then(function (data) {
-                var currentPost = $scope.profile.newsFeedPosts
+                var currentPost = $scope.postsData
                     .filter(function (post) {
                         return post.id === postId;
                     })[0];
@@ -50,7 +50,7 @@ SocialNetwork.controller('commentController', function ($scope, $route, commentS
     $scope.comments.deleteComment = function (postId, commentId) {
         commentServices.deleteComment(postId, commentId)
             .then(function (data) {
-                var currentPost = $scope.profile.newsFeedPosts
+                var currentPost = $scope.postsData
                     .filter(function (post) {
                         return post.id == postId;
                     })[0],

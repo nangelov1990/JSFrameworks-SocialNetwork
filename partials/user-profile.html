@@ -1,9 +1,22 @@
 <div>
     <div navbar></div>
 
-    <div posts></div>
-    
-    <div postbox></div>
+    <div id="user-data">
+        <img ng-src="{{ currentUser.profileImageData"/>
 
-    <div friend-list-preview></div>
+        <h2>{{ currentUser.name }}</h2>
+
+        <div>
+            <button ng-show="currentUser.isFriend" disabled="disabled">Friend</button>
+            <button ng-hide="currentUser.isFriend">Add friend</button>
+        </div>
+    </div>
+
+    <div posts></div>
+
+    <div ng-show="currentUser.isFriend">
+        <div postbox></div>
+
+        <div friend-list-preview></div>
+    </div>
 </div>
