@@ -51,7 +51,7 @@ SocialNetwork.controller('loadUserProfileController', function ($scope, $routePa
         profileServices.sendFriendRequest(username)
             .then(function (serverData) {
                 console.log(serverData);
-                currentUser.hasPendingRequest = true;
+                $scope.currentUser.hasPendingRequest = true;
             }, function (err) {
                 console.error(err);
             });
