@@ -8,16 +8,25 @@ SocialNetwork.controller('loadUserProfileController', function ($scope, $routePa
             .then(function (serverData) {
                 $scope.currentUser = serverData;
 
-                if ($scope.currentUser.profileImageData === null) {
-                    $scope.currentUser.profileImageData = "/img/defaultavatar.png";
-                } else if ($scope.currentUser.profileImageData.indexOf('data:image/jpg;base64,') === -1) {
-                    $scope.currentUser.profileImageData = "data:image/jpg;base64," + $scope.loggedUser.profileImageData;
-                };
+                if ($scope.loggedUser.id === $scope.currentUser.id) {
+                    $scope.currentUser = $scope.loggedUser;
+                } else {
+                    var invalidPhoto = ($scope.currentUser.profileImageData !== null &&
+                        $scope.currentUser.profileImageData.indexOf('data:image/jpeg;base64,') === -1 &&
+                        $scope.currentUser.profileImageData.indexOf('data:image/jpg;base64,') === -1 &&
+                        $scope.currentUser.profileImageData.indexOf('data:image/png;base64,') === -1),
+                        invalidCover = ($scope.currentUser.coverImageData !== null &&
+                        $scope.currentUser.coverImageData.indexOf('data:image/jpeg;base64,') === -1 &&
+                        $scope.currentUser.coverImageData.indexOf('data:image/jpg;base64,') === -1 &&
+                        $scope.currentUser.coverImageData.indexOf('data:image/png;base64,') === -1);
 
-                if ($scope.currentUser.coverImageData === null) {
-                    $scope.currentUser.coverImageData = "/img/defaultcover.jpg";
-                } else if ($scope.currentUser.coverImageData.indexOf('data:image/jpg;base64,') === -1) {
-                    $scope.currentUser.coverImageData = "data:image/jpg;base64," + $scope.loggedUser.coverImageData;
+                    if (invalidPhoto) {
+                        $scope.currentUser.profileImageData = "data:image/jpeg;base64," + $scope.currentUser.profileImageData;
+                    };
+
+                    if (invalidCover) {
+                        $scope.currentUser.coverImageData = "data:image/jpeg;base64," + $scope.currentUser.coverImageData;
+                    };
                 };
 
                 console.log($scope.currentUser);
@@ -55,6 +64,12 @@ SocialNetwork.controller('loadUserProfileController', function ($scope, $routePa
             }, function (err) {
                 console.error(err);
             });
+    };
+
+    $scope.logText = function (args) {
+        args.foreach(function (arg) {
+            console.log(arg);
+        });
     };
 
     $scope.userProfile.getUserFullData($routeParams.username);

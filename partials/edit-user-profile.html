@@ -8,26 +8,34 @@
         <div class="box">
             <div>
                 <div class="box form">
-                    <div user-photo photo="loggedUser.profileImageData"></div>
+                    <div id="user-img" user-photo photo="loggedUser.newProfileImageData || loggedUser.profileImageData"></div>
 
                     <p>Allowed Format: .jpg</p>
                     <p>Limit: 128kb</p>
 
-                    <button>UPLOAD</button> <!--TODO: functionality-->
+                    <input id="photo-input" type="file" ng-model="loggedUser.newProfileImageData" accept="image/*" app-filereader />
+                    <button ng-click="profile.deleteUserPhoto()">Delete</button>
+
+                    <!--<td class="user-photo-buttons">
+                        <input type="file" ng-model class="btn" id="image" accept="image/*" onchange="angular.element(this).scope().fileSelected(this)">
+                        <button type="submit" class="btn btn-primary wide-buttons" ng-click='deleteImg()'>Delete</button>
+                    </td>TODO: functionality-->
                 </div>
                 <div class="box form">
                     <div class="box">
                         <label>
                             Name
-                            <input type="text" placeholder="Name" ng-model="loggedUser.name"/>
+                            <input type="text" ng-model="userEditName"/>
                         </label>
+                        <br/>
 
                         <label>
                             Email
                             <input type="text" placeholder="Email" ng-model="loggedUser.email"/>
                         </label>
+                        <br/>
 
-                        <form class="gender">
+                        Gender<form class="box inline">
                             <label>
                                 <input type="radio" ng-model="loggedUser.gender" value="1" />
                                 Male
@@ -44,16 +52,17 @@
                     </div>
                     <div class="box">
                         <div>
-                            <button>UPLOAD</button> <!--TODO: functionality-->
+                            <input id="cover-input" type="file" ng-model="loggedUser.newCoverImageData" accept="image/*" app-filereader />
                             Limit: 1024kb
                         </div>
+                        <button ng-click="profile.deleteUserCover()">Delete</button>
                         <div>
-                            <img src="{{ loggedUser.coverImageData }}"/>
+                            <img id="cover-img" src="{{ loggedUser.newCoverImageData || loggedUser.coverImageData }}"/>
                         </div>
                     </div>
                 </div>
             </div>
-            <button>SAVE CHANGES</button><!--TODO: functionality-->
+            <button ng-click="profile.editProfile()">SAVE CHANGES</button><!--TODO: functionality-->
         </div>
     </div>
 </div>

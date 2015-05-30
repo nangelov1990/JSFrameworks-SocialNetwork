@@ -7,13 +7,10 @@ SocialNetwork.controller('authenticationController', function ($scope, $location
         $scope.loginData = {};
 
         authenticationService.setCredentials(serverData);
-        $route.reload();
+        $location.path('#/');
     };
     var logoutUser = function () {
         $scope.loggedUser = {};
-        delete sessionStorage['loggedUserData'];
-        authenticationService.clearCredentials();
-        //$location.path('/');
     };
 
     $scope.authentication.loginUser = function () {
@@ -43,7 +40,8 @@ SocialNetwork.controller('authenticationController', function ($scope, $location
                 console.error(err.message);
             })
             .finally(function () {
-                $location.path('/');
+                authenticationService.clearCredentials();
+                $location.path('#/');
             });
     };
 });

@@ -11,16 +11,21 @@ SocialNetwork.controller('navbarController', function ($scope, profileServices) 
                 .then(function (serverData) {
                     $scope.loggedUser = serverData;
 
-                    if ($scope.loggedUser.profileImageData === null) {
-                        $scope.loggedUser.profileImageData = "/img/defaultavatar.png";
-                    } else if ($scope.loggedUser.profileImageData.indexOf('data:image/jpg;base64,') === -1) {
-                        $scope.loggedUser.profileImageData = "data:image/jpg;base64," + $scope.loggedUser.profileImageData;
+                    var invalidPhoto = ($scope.loggedUser.profileImageData !== null &&
+                        $scope.loggedUser.profileImageData.indexOf('data:image/jpeg;base64,') === -1 &&
+                        $scope.loggedUser.profileImageData.indexOf('data:image/jpg;base64,') === -1 &&
+                        $scope.loggedUser.profileImageData.indexOf('data:image/png;base64,') === -1),
+                        invalidCover = ($scope.loggedUser.coverImageData !== null &&
+                        $scope.loggedUser.coverImageData.indexOf('data:image/jpeg;base64,') === -1 &&
+                        $scope.loggedUser.coverImageData.indexOf('data:image/jpg;base64,') === -1 &&
+                        $scope.loggedUser.coverImageData.indexOf('data:image/png;base64,') === -1);
+
+                    if (invalidPhoto) {
+                        $scope.loggedUser.profileImageData = "data:image/jpeg;base64," + $scope.loggedUser.profileImageData;
                     };
 
-                    if ($scope.loggedUser.coverImageData === null) {
-                        $scope.loggedUser.coverImageData = "/img/defaultcover.jpg";
-                    } else if ($scope.loggedUser.coverImageData.indexOf('data:image/jpg;base64,') === -1) {
-                        $scope.loggedUser.coverImageData = "data:image/jpg;base64," + $scope.loggedUser.coverImageData;
+                    if (invalidCover) {
+                        $scope.loggedUser.coverImageData = "data:image/jpeg;base64," + $scope.loggedUser.coverImageData;
                     };
 
                     $scope.profile.getFriendRequests();

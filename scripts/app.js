@@ -24,7 +24,8 @@ SocialNetwork.config(function ($routeProvider, $locationProvider) {
             controller: 'loadUserProfileController'
         })
         .when('/profile', {
-            templateUrl: 'partials/edit-user-profile.html'
+            templateUrl: 'partials/edit-user-profile.html',
+            controller: 'profileController'
         })
         .when('/profile/password', {
             templateUrl: 'partials/edit-user-password.html',

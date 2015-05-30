@@ -39,9 +39,11 @@ SocialNetwork.controller('commentController', function ($scope, $route, commentS
                         return post.id === postId;
                     })[0];
 
-                $scope.comments.showAddForm = false;
                 currentPost.comments.push(data);
                 currentPost.totalCommentsCount++;
+
+                $scope.comments.showAddForm = false;
+                delete $scope.comments.newCommentContent;
             }, function (err) {
                 console.error(err);
             });

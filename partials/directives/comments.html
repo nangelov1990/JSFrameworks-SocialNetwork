@@ -1,14 +1,14 @@
 <div class="post-comments">
-    <div ng-repeat="comment in post.comments" class="comment" id="comment-{{comment.id}}">
+    <div ng-repeat="comment in post.comments" class="comment" id="comment-{{ comment.id }}">
         <div class="author-data">
             <div user-preview user="comment.author"></div>
-            <p class="date">{{comment.date | date: 'd MMM yyyy HH:mm:ss'}}</p>
+            <p class="date">{{ comment.date | date: 'd MMM yyyy HH:mm:ss' }}</p>
         </div>
         <div class="content">
-            <h3>{{comment.commentContent}}</h3>
+            <h3 class="text-content">{{ comment.commentContent }}</h3>
             <div class="likesComments">
                 <div class="likes">
-                    <span>{{comment.likesCount}}</span>
+                    <span>{{ comment.likesCount }}</span>
                     <img src="" alt=""/> <!-- TODO: like img-->
                     <div class="commentLikes" ng-controller="commentController">
                         <a href="" ng-click="comments.likeComment(post.id, comment.id)" ng-show="!comment.liked">Like</a>
@@ -16,11 +16,12 @@
                     </div>
                 </div>
             </div>
-            <div ng-controller="commentController" class="edit-comment" ng-if="comment.author.username == loggedUser.username">
+            <div ng-mouseleave="comments.showEditForm=false" ng-controller="commentController" class="previewParent edit-comment" ng-if="comment.author.username == loggedUser.username">
                 <a href="" ng-click="comments.showEditForm = !comments.showEditForm" ng-hide="comments.showEditForm">Edit Comment</a>
-                <div class="addCommentForm" data-ng-show="comments.showEditForm">
-                    <input id="edit-comment_{{ comment.id }}-text" type="text" ng-model="comments.editCommentContent"/>
+                <div class="comment-controll-preview preview" data-ng-show="comments.showEditForm">
+                    <input id="edit-comment_{{ comment.id }}-text" type="text" ng-model="comment.editCommentContent"/>
                     <button ng-click="comments.editComment(post.id, comment.id, comments.editCommentContent)">Edit</button>
+                    <button ng-click="comments.deleteComment(post.id, comment.id)">Delete</button>
                 </div>
                 <button ng-click="comments.deleteComment(post.id, comment.id)">Delete</button>
             </div>

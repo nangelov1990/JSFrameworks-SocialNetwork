@@ -1,16 +1,17 @@
 <div ng-repeat="post in postsData">
     <div class="post" id="post-{{ post.id }}">
         <div class="author-data">
-            <div user-preview user="post.author"></div>
-            <div ng-if="post.author.username !== post.wallOwner.username">
-                <div user-preview user="post.wallOwner"></div>
+            <div user-preview user="post.author" class="inline"></div>
+            <div ng-if="post.author.username !== post.wallOwner.username" class="inline">
+                <h3 class="inline">to</h3>
+                <div class="inline" user-preview user="post.wallOwner"></div>
             </div>
         </div>
 
         <p class="date">{{ post.date | date: 'd MMM yyyy HH:mm:ss' }}</p>
 
         <div class="postContent">
-            <h3>{{ post.postContent }}</h3>
+            <h3 class="text-content">{{ post.postContent }}</h3>
             <div class="likesComments">
                 <div class="likes">
                     <span>{{ post.likesCount }}</span>
@@ -18,14 +19,14 @@
                     <a href="" ng-click="posts.likePost(post.id)" ng-hide="post.liked">Like</a>
                     <a href="" ng-click="posts.unlikePost(post.id)" ng-show="post.liked">Unlike</a>
                 </div>
-                <div class="comments" ng-controller="commentController">
+                <div ng-mouseleave="comments.showAddForm=false" class="comments" ng-controller="commentController" class="previewParent">
                     <span>{{ post.totalCommentsCount }}</span>
                     <img src="" alt=""/> <!-- TODO: Comment img-->
                     <a href="" ng-click="comments.showAddForm = !comments.showAddForm">Comment</a>
-                    <div id="addCommentToPost{{ post.id }}" class="addCommentForm" data-ng-show="comments.showAddForm">
+                    <form class="comment-controll-preview preview" id="addCommentToPost{{ post.id }}" class="addCommentForm" data-ng-show="comments.showAddForm">
                         <input id="new-comment-{{ comment.id }}" type="text" ng-model="comments.newCommentContent"/>
-                        <button ng-click="comments.addCommentToPost(post.id, comments.newCommentContent)">Add Comment</button>
-                    </div>
+                        <button type="submit" ng-click="comments.addCommentToPost(post.id, comments.newCommentContent)">Add Comment</button>
+                    </form>
                 </div>
                 <div comments></div>
             </div>
