@@ -1,0 +1,16 @@
+<div class="previewParent">
+    <a href="#/users/{{ user.username }}" ng-mouseover="userPreview=true" ng-mouseleave="userPreview=false">
+        <div user-photo class="user-small-img" photo="user.profileImageData"></div>
+        <h3 class="author">{{ user.name }}</h3>
+    </a>
+    <div class="preview mid-border-black" ng-show="userPreview">
+        <div user-photo class="user-mid-img" photo="user.profileImageData"></div>
+        <h2 class="author">{{ user.name }}</h2>
+        {{ user.gender }}
+        <div>
+            <button ng-show="user.isFriend" disabled="disabled">Friend</button>
+            <button ng-show="user.hasPendingRequest" disabled="disabled">Friend Request Sent</button>
+            <button ng-hide="user.isFriend || user.hasPendingRequest" ng-click="userProfile.sendFriendRequest(user.username)">Add friend</button>
+        </div>
+    </div>
+</div>

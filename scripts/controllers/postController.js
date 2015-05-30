@@ -1,7 +1,7 @@
 "use strict";
 
 SocialNetwork.controller('postController', function ($scope, $route, postServices) {
-    $scope.posts = {};
+    $scope.posts = $scope.posts || {};
 
     $scope.posts.addNewPostToUserWall = function (username, postContent) {
         var postData = {

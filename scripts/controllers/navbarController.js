@@ -1,8 +1,7 @@
 "use strict";
 
 SocialNetwork.controller('navbarController', function ($scope, profileServices) {
-    $scope.profile = {};
-    $scope.profile.myUsername = sessionStorage['username'];
+    $scope.profile = $scope.profile || {};
 
     var loadCurrentUserInfo = function () {
         if (sessionStorage['loggedUserData']) {
@@ -12,10 +11,15 @@ SocialNetwork.controller('navbarController', function ($scope, profileServices) 
                 .then(function (serverData) {
                     $scope.loggedUser = serverData;
 
-                    if ($scope.loggedUser.profileImageData.indexOf('data:image/jpg;base64,') === -1) {
+                    if ($scope.loggedUser.profileImageData === null) {
+                        $scope.loggedUser.profileImageData = "/img/defaultavatar.png";
+                    } else if ($scope.loggedUser.profileImageData.indexOf('data:image/jpg;base64,') === -1) {
                         $scope.loggedUser.profileImageData = "data:image/jpg;base64," + $scope.loggedUser.profileImageData;
                     };
-                    if ($scope.loggedUser.coverImageData.indexOf('data:image/jpg;base64,') === -1) {
+
+                    if ($scope.loggedUser.coverImageData === null) {
+                        $scope.loggedUser.coverImageData = "/img/defaultcover.jpg";
+                    } else if ($scope.loggedUser.coverImageData.indexOf('data:image/jpg;base64,') === -1) {
                         $scope.loggedUser.coverImageData = "data:image/jpg;base64," + $scope.loggedUser.coverImageData;
                     };
 
@@ -32,6 +36,16 @@ SocialNetwork.controller('navbarController', function ($scope, profileServices) 
         };
 
         console.log($scope.loggedUser);
+    };
+
+    $scope.profile.getFriendRequests = function () {
+        profileServices.getFriendRequests()
+            .then(function (serverData) {
+                $scope.profile.friendRequests = serverData;
+                console.log($scope.profile.friendRequests);
+            }, function (err) {
+                console.error(err);
+            });
     };
 
     $scope.profile.approveFriendRequest = function () {

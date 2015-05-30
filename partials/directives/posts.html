@@ -1,27 +1,28 @@
 <div ng-repeat="post in postsData">
-    <div class="post" id="post-{{post.id}}">
+    <div class="post" id="post-{{ post.id }}">
         <div class="author-data">
-            <a href="#/users/{{post.author.username}}" > <!-- TODO: set up popup-->
-                <img src="{{ post.author.profileImageData }}"/>
-                <h3 class="author">{{post.author.name}}</h3>
-                <p class="date">{{post.date | date: 'd MMM yyyy HH:mm:ss'}}</p>
-            </a>
+            <div user-preview user="post.author"></div>
+            <div ng-if="post.author.username !== post.wallOwner.username">
+                <div user-preview user="post.wallOwner"></div>
+            </div>
         </div>
 
+        <p class="date">{{ post.date | date: 'd MMM yyyy HH:mm:ss' }}</p>
+
         <div class="postContent">
-            <h3>{{post.postContent}}</h3>
+            <h3>{{ post.postContent }}</h3>
             <div class="likesComments">
                 <div class="likes">
-                    <span>{{post.likesCount}}</span>
+                    <span>{{ post.likesCount }}</span>
                     <img src=""/> <!-- TODO: like img-->
                     <a href="" ng-click="posts.likePost(post.id)" ng-hide="post.liked">Like</a>
                     <a href="" ng-click="posts.unlikePost(post.id)" ng-show="post.liked">Unlike</a>
                 </div>
                 <div class="comments" ng-controller="commentController">
-                    <span>{{post.totalCommentsCount}}</span>
+                    <span>{{ post.totalCommentsCount }}</span>
                     <img src="" alt=""/> <!-- TODO: Comment img-->
                     <a href="" ng-click="comments.showAddForm = !comments.showAddForm">Comment</a>
-                    <div id="addCommentToPost{{post.id}}" class="addCommentForm" data-ng-show="comments.showAddForm">
+                    <div id="addCommentToPost{{ post.id }}" class="addCommentForm" data-ng-show="comments.showAddForm">
                         <input id="new-comment-{{ comment.id }}" type="text" ng-model="comments.newCommentContent"/>
                         <button ng-click="comments.addCommentToPost(post.id, comments.newCommentContent)">Add Comment</button>
                     </div>
@@ -29,14 +30,14 @@
                 <div comments></div>
             </div>
 
-            <div class="edit-post" ng-if="post.author.username === profile.myUsername">
-                <input type="checkbox" ng-model="posts.showEditForm" data-ng-hide="posts.showEditForm" />Edit Post
+            <div class="edit-post" ng-if="post.author.username === loggedUser.username">
+                <a href="" ng-click="posts.showEditForm = !posts.showEditForm" ng-hide="posts.showEditForm">Edit Post</a>
                 <div class="editPostForm" data-ng-show="posts.showEditForm">
                     <input id="edit-post_{{ post.id }}-text" type="text" ng-model="post.editPostContent"/>
                     <button ng-click="posts.editPost(post.id, post.editPostContent)">Edit</button>
                 </div>
             </div>
-            <div class="delete-post" ng-if="post.author.username === profile.myUsername || post.wallOwner.username === profile.myUsername">
+            <div class="delete-post" ng-if="post.author.username === loggedUser.username || post.wallOwner.username === loggedUser.username">
                 <button ng-click="posts.deletePost(post.id)">Delete</button>
             </div>
         </div>

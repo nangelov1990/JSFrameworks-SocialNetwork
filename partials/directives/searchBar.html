@@ -1,0 +1,17 @@
+<input type="text" placeholder="Search..."
+       ng-controller="userController"
+       ng-change="user.searchUsersByName(user.searchName)"
+       ng-model="user.searchName">
+
+<div ng-if="user.searchName" style="display: block" class="previewParent">
+    <div class="preview">
+        <div ng-repeat="foundUser in user.foundUsers" class="found-user">
+            <a href="#/users/{{ foundUser.username }}" ng-mouseover="userPreview=true" ng-mouseleave="userPreview=false">
+                <div user-photo class="user-small-img" photo="foundUser.profileImageData"></div>
+                <h3 class="author">{{ foundUser.name }}</h3>
+            </a>
+            <br/>
+            <hr noshade class="found-user-separator">
+        </div>
+    </div>
+</div>

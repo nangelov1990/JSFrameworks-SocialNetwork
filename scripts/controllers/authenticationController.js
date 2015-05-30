@@ -1,7 +1,7 @@
 "use strict";
 
 SocialNetwork.controller('authenticationController', function ($scope, $location, $route, authenticationService, profileServices) {
-    $scope.authentication = {};
+    $scope.authentication = $scope.authentication || {};
 
     var loggedUser = function (serverData) {
         $scope.loginData = {};
@@ -13,7 +13,7 @@ SocialNetwork.controller('authenticationController', function ($scope, $location
         $scope.loggedUser = {};
         delete sessionStorage['loggedUserData'];
         authenticationService.clearCredentials();
-        $location.path('/');
+        //$location.path('/');
     };
 
     $scope.authentication.loginUser = function () {
@@ -41,7 +41,9 @@ SocialNetwork.controller('authenticationController', function ($scope, $location
                 logoutUser();
             }, function (err) {
                 console.error(err.message);
+            })
+            .finally(function () {
+                $location.path('/');
             });
-
     };
 });

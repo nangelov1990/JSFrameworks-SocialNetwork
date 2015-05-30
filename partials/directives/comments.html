@@ -1,11 +1,8 @@
 <div class="post-comments">
     <div ng-repeat="comment in post.comments" class="comment" id="comment-{{comment.id}}">
         <div class="author-data">
-            <a href="#/users/{{comment.author.username}}" > <!-- TODO: set up popup-->
-                <img src="{{ comment.author.profileImageData }}"/>
-                <h3 class="author">{{comment.author.name}}</h3>
-                <p class="date">{{comment.date | date: 'd MMM yyyy HH:mm:ss'}}</p>
-            </a>
+            <div user-preview user="comment.author"></div>
+            <p class="date">{{comment.date | date: 'd MMM yyyy HH:mm:ss'}}</p>
         </div>
         <div class="content">
             <h3>{{comment.commentContent}}</h3>
@@ -19,8 +16,8 @@
                     </div>
                 </div>
             </div>
-            <div ng-controller="commentController" class="edit-comment" ng-if="comment.author.username == profile.myUsername">
-                <input type="checkbox" ng-model="comments.showEditForm" data-ng-hide="comments.showEditForm" />Edit Comment
+            <div ng-controller="commentController" class="edit-comment" ng-if="comment.author.username == loggedUser.username">
+                <a href="" ng-click="comments.showEditForm = !comments.showEditForm" ng-hide="comments.showEditForm">Edit Comment</a>
                 <div class="addCommentForm" data-ng-show="comments.showEditForm">
                     <input id="edit-comment_{{ comment.id }}-text" type="text" ng-model="comments.editCommentContent"/>
                     <button ng-click="comments.editComment(post.id, comment.id, comments.editCommentContent)">Edit</button>

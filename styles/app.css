@@ -16,18 +16,20 @@
 }
 
 .comment {
+    width: 95%;
     border: 1px solid red;
-    margin-left: 5%;
+    margin: 10px 0;
     border-radius: 10px;
     padding: 10px 25px 40px;
     display: inline-block;
 }
 
 .post {
+    width: 95%;
     border: 1px solid black;
-    border-radius: 10px;
     padding: 10px 25px 40px;
     display: inline-block;
+    margin: 10px 0;
 }
 
 .box {
@@ -36,4 +38,50 @@
 
 .inline {
     display: inline-table;
+}
+
+.user-small-img * {
+    width: 50px;
+}
+
+.user-mid-img * {
+    width: 150px;
+}
+
+nav.navbar * {
+    display: inline-block;
+}
+
+.previewParent {
+    position: relative;
+}
+
+.preview {
+    background-color: white;
+    position: absolute;
+    z-index: 2;
+}
+
+.mid-border-black {
+    border: 2px solid black;
+}
+
+.found-user {
+    width: 100%;
+}
+
+.found-user-separator {
+    size: 2px;
+    width: 80%;
+}
+
+.friend-request-count {
+    width:20px;
+    height:20px;
+    border-radius:50%;
+    font-size: 17px;
+    color: white;
+    text-align: center;
+    background: red;
+    border: 3px solid black;
 }

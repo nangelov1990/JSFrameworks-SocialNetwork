@@ -1,8 +1,8 @@
-<div class="friendListBox">
+<div class="friendListBox form">
     <h2>Friends - <a href="users/{{ currentUser.username }}/friends">{{ previewFriends.totalCount }}</a> total</h2>
     <div class="friendBox" ng-repeat="friend in previewFriends.friends">
         <a href="#/users/{{friend.username}}">
-            <img src="" alt=""/>
+            <div user-photo photo="friend.profileImageData" class="user-small-img"></div>
             <h3 class="{{friend.id}} name">{{friend.name}}</h3>
         </a>
     </div>

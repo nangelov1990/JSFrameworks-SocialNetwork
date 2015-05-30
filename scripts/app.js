@@ -27,7 +27,8 @@ SocialNetwork.config(function ($routeProvider, $locationProvider) {
             templateUrl: 'partials/edit-user-profile.html'
         })
         .when('/profile/password', {
-            templateUrl: 'partials/edit-user-password.html'
+            templateUrl: 'partials/edit-user-password.html',
+            controller: 'profileController'
         })
         .otherwise({ redirectTo: '/' });
 
