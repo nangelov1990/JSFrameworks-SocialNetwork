@@ -23,13 +23,7 @@ SocialNetwork.controller('navbarController', function ($scope, profileServices) 
                         $scope.loggedUser.coverImageData = "data:image/jpg;base64," + $scope.loggedUser.coverImageData;
                     };
 
-                    profileServices.getFriendRequests()
-                        .then(function (serverData) {
-                            $scope.loggedUser['friendRequests'] = serverData || 0;
-                            sessionStorage['loggedUserData'] = JSON.stringify($scope.loggedUser);
-                        }, function (err) {
-                            console.error(err.message);
-                        });
+                    $scope.profile.getFriendRequests();
                 }, function (err) {
                     console.error(err.message)
                 });
@@ -41,15 +35,52 @@ SocialNetwork.controller('navbarController', function ($scope, profileServices) 
     $scope.profile.getFriendRequests = function () {
         profileServices.getFriendRequests()
             .then(function (serverData) {
-                $scope.profile.friendRequests = serverData;
+                $scope.loggedUser['friendRequests'] = serverData || 0;
+                sessionStorage['loggedUserData'] = JSON.stringify($scope.loggedUser);
                 console.log($scope.profile.friendRequests);
             }, function (err) {
                 console.error(err);
             });
     };
 
-    $scope.profile.approveFriendRequest = function () {
-        // TODO
+    $scope.profile.approveFriendRequest = function (requestId) {
+        profileServices.approveFriendRequest(requestId)
+            .then(function (serverData) {
+                console.log(serverData);
+                //var request = $scope.loggedUser.friendRequests
+                //        .filter(function (request) {
+                //            return request.id = requestId;
+                //        })[0],
+                //    indexOfRequest = $scope.loggedUser.friendRequests.indexOf(request);
+                //
+                //$scope.loggedUser.friendRequests.splice(indexOfRequest, 1);
+                ////$scope.loggedUser.friendRequests.length--;
+                $scope.profile.getFriendRequests();
+                $scope.friendRequestPreview = false;
+                // TODO: Notify
+            }, function (err) {
+                console.error(err);
+            });
+    };
+
+    $scope.profile.rejectFriendRequest = function (requestId) {
+        profileServices.rejectFriendRequest(requestId)
+            .then(function (serverData) {
+                console.log(serverData);
+                //var request = $scope.loggedUser.friendRequests
+                //    .filter(function (request) {
+                //       return request.id = requestId;
+                //    })[0],
+                //    indexOfRequest = $scope.loggedUser.friendRequests.indexOf(request);
+                //
+                //$scope.loggedUser.friendRequests.splice(indexOfRequest, 1);
+                ////$scope.loggedUser.friendRequests.length--;
+                $scope.profile.getFriendRequests();
+                $scope.friendRequestPreview = false;
+                // TODO: Notify
+            }, function (err) {
+                console.error(err);
+            });
     };
 
     loadCurrentUserInfo();

@@ -1,22 +1,22 @@
-<div ng-click="friendRequestPreview = !friendRequestPreview; profile.getFriendRequests()">
-    <!--<img class="previewParent" src="" /> &lt;!&ndash;TODO: friend request icon&ndash;&gt;-->
-    <span>Friend Requests: </span><strong ng-if="loggedUser.friendRequests.length > 0" class="preview friend-request-count">{{ loggedUser.friendRequests.length }}</strong>
+<div class="previewParent" ng-click="friendRequestPreview = !friendRequestPreview; profile.getFriendRequests()">
+    <img class="icon" src="/img/friend-requests.png" src="" />
+    <strong ng-if="loggedUser.friendRequests.length > 0" class="preview friend-request-count">{{ loggedUser.friendRequests.length }}</strong>
 </div>
 
 <div ng-if="friendRequestPreview" class="previewParent" style="display: block" >
-    <div class="preview">
-        <div ng-repeat="result in profile.friendRequests">
-            <a href="#/users/{{ result.user.username }}">
-                <div user-photo class="user-small-img" photo="result.user.profileImageData"></div>
-                <h3 class="author">{{ result.user.name }}</h3>
+    <div class="preview friend-requests-list">
+        <div ng-repeat="request in loggedUser.friendRequests">
+            <a href="#/users/{{ request.user.username }}">
+                <div user-photo class="user-small-img" photo="request.user.profileImageData"></div>
+                <h3 class="author">{{ request.user.name }}</h3>
             </a>
             <div>
-                <button>Accept</button>
-                <button>Reject</button>
+                <button ng-click="profile.approveFriendRequest(request.id)">Accept</button>
+                <button ng-click="profile.rejectFriendRequest(request.id)">Reject</button>
             </div>
             <br/>
             <hr noshade class="found-user-separator">
         </div>
-        <i>{{ loggedUser.friendRequests.length }} results total</i>
+        <i>{{ loggedUser.friendRequests.length }} result<span ng-if="loggedUser.friendRequests.length > 1">s</span> total</i>
     </div>
 </div>
