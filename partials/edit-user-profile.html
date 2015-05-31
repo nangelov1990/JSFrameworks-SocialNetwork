@@ -1,7 +1,7 @@
 <div>
     <div navbar></div>
 
-    <div>
+    <div class="col-8 centered">
         <div class="box">
             <h1>EDIT PROFILE</h1>
         </div>
@@ -13,8 +13,8 @@
                     <p>Allowed Format: .jpg</p>
                     <p>Limit: 128kb</p>
 
-                    <input id="photo-input" type="file" ng-model="loggedUser.newProfileImageData" accept="image/*" app-filereader />
-                    <button ng-click="profile.deleteUserPhoto()">Delete</button>
+                    <input class="btn" id="photo-input" type="file" ng-model="loggedUser.newProfileImageData" accept="image/*" app-filereader />
+                    <button class="btn" profile.deleteUserPhoto()>Delete</button>
 
                     <!--<td class="user-photo-buttons">
                         <input type="file" ng-model class="btn" id="image" accept="image/*" onchange="angular.element(this).scope().fileSelected(this)">
@@ -52,17 +52,17 @@
                     </div>
                     <div class="box">
                         <div>
-                            <input id="cover-input" type="file" ng-model="loggedUser.newCoverImageData" accept="image/*" app-filereader />
+                            <input class="btn" id="cover-input" type="file" ng-model="loggedUser.newCoverImageData" accept="image/*" app-filereader />
                             Limit: 1024kb
                         </div>
-                        <button ng-click="profile.deleteUserCover()">Delete</button>
+                        <button class="btn" ng-click="profile.deleteUserCover()">Delete</button>
                         <div>
                             <img id="cover-img" src="{{ loggedUser.newCoverImageData || loggedUser.coverImageData }}"/>
                         </div>
                     </div>
                 </div>
             </div>
-            <button ng-click="profile.editProfile()">SAVE CHANGES</button><!--TODO: functionality-->
+            <button class="btn" ng-click="profile.editProfile()">SAVE CHANGES</button><!--TODO: functionality-->
         </div>
     </div>
 </div>

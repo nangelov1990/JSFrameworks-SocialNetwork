@@ -11,8 +11,8 @@
                 <h3 class="author">{{ request.user.name }}</h3>
             </a>
             <div>
-                <button ng-click="profile.approveFriendRequest(request.id)">Accept</button>
-                <button ng-click="profile.rejectFriendRequest(request.id)">Reject</button>
+                <button class="btn" ng-click="profile.approveFriendRequest(request.id)">Accept</button>
+                <button class="btn" ng-click="profile.rejectFriendRequest(request.id)">Reject</button>
             </div>
             <br/>
             <hr noshade class="found-user-separator">

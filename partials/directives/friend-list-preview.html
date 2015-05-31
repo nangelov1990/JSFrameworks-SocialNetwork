@@ -1,9 +1,9 @@
-<div class="friendListBox form">
-    <h2>Friends - <a href="users/{{ currentUser.username }}/friends">{{ previewFriends.totalCount }}</a> total</h2>
-    <div class="friendBox" ng-repeat="friend in previewFriends.friends">
-        <a href="#/users/{{friend.username}}">
-            <div user-photo photo="friend.profileImageData" class="user-small-img"></div>
-            <h3 class="{{friend.id}} name">{{friend.name}}</h3>
+<div class="friendListBox form row">
+    <h2 class="friendbox-heading">Friends - <a class="non-decor" href="users/{{ currentUser.username }}/friends">{{ previewFriends.totalCount }}</a> total</h2>
+    <div class="friendBox col-4 inline" ng-repeat="friend in previewFriends.friends">
+        <a class="non-decor" href="#/users/{{friend.username}}">
+            <div user-photo photo="friend.profileImageData" class="friendbox-img"></div>
+            <h3 class="friendlist-name">{{friend.name}}</h3>
         </a>
     </div>
 </div>

@@ -1,29 +1,34 @@
 <div class="post-comments">
     <div ng-repeat="comment in post.comments" class="comment" id="comment-{{ comment.id }}">
-        <div class="author-data">
-            <div user-preview user="comment.author"></div>
-            <p class="date">{{ comment.date | date: 'd MMM yyyy HH:mm:ss' }}</p>
+        <div class="comment-header row">
+            <div class="author-data col-8">
+                <div user-preview user="comment.author"></div>
+            </div>
+            <p class="col-4 date-time">{{ comment.date | date: 'd MMM yyyy HH:mm:ss' }}</p>
         </div>
-        <div class="content">
-            <h3 class="text-content">{{ comment.commentContent }}</h3>
-            <div class="likesComments">
+
+        <p class="text-content">{{ comment.commentContent }}</p>
+
+        <div class="post-commands">
+            <div class="inline likesComments">
                 <div class="likes">
-                    <span>{{ comment.likesCount }}</span>
-                    <img src="" alt=""/> <!-- TODO: like img-->
-                    <div class="commentLikes" ng-controller="commentController">
+                    <span class="inline">{{ comment.likesCount }}</span>
+                    <img class="small-icon" src="/img/like-icon.png"/> <!-- TODO: like img-->
+                    <div ng-if="comment.author.isFriend" class="commentLikes inline" ng-controller="commentController">
                         <a href="" ng-click="comments.likeComment(post.id, comment.id)" ng-show="!comment.liked">Like</a>
                         <a href="" ng-click="comments.unlikeComment(post.id, comment.id)" ng-hide="!comment.liked">Unlike</a>
                     </div>
                 </div>
             </div>
-            <div ng-mouseleave="comments.showEditForm=false" ng-controller="commentController" class="previewParent edit-comment" ng-if="comment.author.username == loggedUser.username">
-                <a href="" ng-click="comments.showEditForm = !comments.showEditForm" ng-hide="comments.showEditForm">Edit Comment</a>
-                <div class="comment-controll-preview preview" data-ng-show="comments.showEditForm">
-                    <input id="edit-comment_{{ comment.id }}-text" type="text" ng-model="comment.editCommentContent"/>
-                    <button ng-click="comments.editComment(post.id, comment.id, comments.editCommentContent)">Edit</button>
-                    <button ng-click="comments.deleteComment(post.id, comment.id)">Delete</button>
+            <div ng-if="comment.author.isFriend || comment.author.username === loggedUser.username" class="inline" ng-mouseleave="comment.showEditForm=false" ng-controller="commentController" class="previewParent edit-comment" ng-if="comment.author.username == loggedUser.username">
+                <a href="" ng-click="comment.showEditForm = !comment.showEditForm">Edit Comment</a>
+                <div class="post-popup preview" data-ng-show="comment.showEditForm">
+                    <textarea autofocus="autofocus" id="edit-comment_{{ comment.id }}-text" ng-model="comment.editCommentContent"></textarea>
+                    <a href="" class="comment-commands" ng-click="comments.editComment(post.id, comment.id, comment.editCommentContent)">
+                        Edit
+                    </a>
                 </div>
-                <button ng-click="comments.deleteComment(post.id, comment.id)">Delete</button>
+                <a href="" ng-click="comments.deleteComment(post.id, comment.id)">Delete</a>
             </div>
         </div>
     </div>

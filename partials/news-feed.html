@@ -1,9 +1,12 @@
-<div ng-controller="newsFeedController"> <!-- TODO: clean up: ng-controller="profileController"-->
+<div ng-controller="newsFeedController">
     <div navbar></div>
 
-    <!--TODO: style-->
-    <h1>NEWS FEED</h1>
-    <div posts class="col-lg-9 form inline"></div>
+    <h1 class="news-feed-title col-12 thin-black-border">NEWS FEED</h1>
+    <div class="row">
+        <div class="col-8">
+            <div posts></div> <!-- postsCollection="postsData"-->
+        </div>
 
-    <div friend-list-preview class="col-lg-3 inline"></div>
+        <div class="col-4" friend-list-preview class="col-lg-3 inline"></div> <!-- user="loggedUser"-->
+    </div>
 </div>

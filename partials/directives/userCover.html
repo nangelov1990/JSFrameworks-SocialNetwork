@@ -1,2 +1,2 @@
-<img class="cover-photo" src="{{ cover }}" ng-show="cover"/>
-<img class="cover-photo" src="/img/defaultcover.jpg" ng-hide="cover"/>
+<img class="cover-photo" src="{{ cover }}" ng-if="cover"/>
+<img class="cover-photo" src="/img/defaultcover.jpg" ng-if="!cover"/>

@@ -1,6 +1,5 @@
 <input type="text" placeholder="Search..."
-       ng-controller="userController"
-       ng-change="user.searchUsersByName(user.searchName)"
+       ng-change="user.searchUsersByName(user.searchName); alert(user.searchName)"
        ng-model="user.searchName">
 
 <div ng-if="user.searchName" style="display: block" class="previewParent">

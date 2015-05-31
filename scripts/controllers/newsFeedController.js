@@ -1,6 +1,8 @@
 "use strict";
 
 SocialNetwork.controller('newsFeedController', function ($scope, profileServices) {
+    $scope.profile = $scope.profile|| {};
+
     var getNewsFeedPages = function () {
         profileServices.getNewsFeedPages()
             .then(function (serverPostData) {
@@ -10,16 +12,22 @@ SocialNetwork.controller('newsFeedController', function ($scope, profileServices
             });
     };
 
-    var getLoggedUserFriendsPreview = function () {
+    $scope.profile.getMyFriendsPreview = function () {
         profileServices.getMyFriendsPreview()
             .then(function (data) {
-                $scope.currentUser = $scope.loggedUser;
                 $scope.previewFriends = data;
+
+                if ($scope.loggedUser) {
+                    $scope.loggedUser.previewFriends = $scope.previewFriends;
+                    $scope.currentUser = $scope.loggedUser;
+                };
             }, function (err) {
                 console.error(err);
             });
     };
 
-    getLoggedUserFriendsPreview();
     getNewsFeedPages();
+    $scope.profile.getMyFriendsPreview();
+
+    console.log('newsFeedController');
 });

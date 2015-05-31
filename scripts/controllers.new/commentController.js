@@ -49,9 +49,9 @@ SocialNetwork.controller('commentController', function ($scope, $route, commentS
         commentServices.deleteComment(postId, commentId)
             .then(function (data) {
                 var currentPost = $scope.postsData
-                    .filter(function (post) {
-                        return post.id == postId;
-                    })[0],
+                        .filter(function (post) {
+                            return post.id == postId;
+                        })[0],
                     comment = currentPost.comments
                         .filter(function (comment) {
                             return comment.id === commentId;

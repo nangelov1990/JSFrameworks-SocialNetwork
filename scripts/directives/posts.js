@@ -5,5 +5,9 @@ SocialNetwork.directive('posts', function ($compile) {
         restrict: 'A',
         templateUrl: 'partials/directives/posts.html',
         controller: 'postController'
+        //,
+        //scope: {
+        //    postsCollection: '='
+        //}
     };
 });

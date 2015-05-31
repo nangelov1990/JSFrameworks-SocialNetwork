@@ -14,4 +14,6 @@ SocialNetwork.controller('userController', function ($scope, $location, $routePa
                 });
         };
     };
+
+    console.log('userController');
 });

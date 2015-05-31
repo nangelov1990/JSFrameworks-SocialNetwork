@@ -1,30 +1,30 @@
-<div>
+<div class="row">
     <div navbar></div>
 
     <div id="user-data">
         <div id="cover">
             <div user-cover cover="currentUser.coverImageData"></div>
         </div>
-        <div id="user-info">
+        <div class="user-info">
             <div class="user-profile-img inline" user-photo photo="currentUser.profileImageData"></div>
 
-            <div id="user-profile-name" class="inline">
-                <h1>{{ currentUser.name }}</h1>
+            <div class="inline">
+                <h1 class="inline user-profile-name">{{ currentUser.name }}</h1>
 
-                <div ng-if="currentUser.username !== loggedUser.username">
-                    <button ng-if="currentUser.isFriend" disabled="disabled">Friend</button>
-                    <button ng-if="currentUser.hasPendingRequest" disabled="disabled">Friend Request Sent</button>
-                    <button ng-if="!(currentUser.isFriend || currentUser.hasPendingRequest)" ng-click="userProfile.sendFriendRequest(currentUser.username)">Add friend</button>
+                <div class="user-profile-button inline" ng-if="currentUser && (currentUser.username !== loggedUser.username)">
+                    <button class="btn profile-btn" ng-if="currentUser.isFriend" disabled="disabled">Friend</button>
+                    <button class="btn profile-btn" ng-if="currentUser.hasPendingRequest" disabled="disabled">Friend Request Sent</button>
+                    <button class="btn profile-btn" ng-if="!(currentUser.isFriend || currentUser.hasPendingRequest)" ng-click="userProfile.sendFriendRequest(currentUser.username)">Add friend</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <div posts class="inline"></div>
+    <div posts class="inline col-8"></div> <!-- postsCollection="postsData"-->
 
-    <div class="inline" ng-show="currentUser.isFriend || (currentUser.username === loggedUser.username)">
+    <div class="inline col-4" ng-show="currentUser.isFriend || (currentUser.username === loggedUser.username)">
         <div postbox></div>
 
-        <div friend-list-preview></div>
+        <div friend-list-preview></div> <!-- user="currentUser"-->
     </div>
 </div>

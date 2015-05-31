@@ -1,14 +1,14 @@
 "use strict";
 
-SocialNetwork.controller('loadUserProfileController', function ($scope, $routeParams, userServices, profileServices) {
+SocialNetwork.controller('userController', function ($scope, $routeParams, userServices, profileServices) {
     $scope.userProfile = $scope.userProfile || {};
+    $scope.user = $scope.user || {};
 
     $scope.userProfile.getUserFullData = function (username) {
         userServices.getUserFullData(username)
             .then(function (serverData) {
                 $scope.currentUser = serverData;
-
-                var myProfile = ($scope.currentUser.id === $scope.loggedUser.id);
+                var myProfile = $scope.currentUser.id === $scope.loggedUser.id;
 
                 if (myProfile) {
                     $scope.currentUser = $scope.loggedUser;
@@ -32,11 +32,8 @@ SocialNetwork.controller('loadUserProfileController', function ($scope, $routePa
                 };
 
                 console.log($scope.currentUser);
-                if ($scope.currentUser.isFriend) {
+                if ($scope.currentUser.isFriend || myProfile) {
                     $scope.userProfile.getFriendPreviewFriendsList($routeParams.username);
-                };
-                if (myProfile) {
-                    $scope.userProfile.getMyFriendsPreview();
                 };
             }, function (err) {
                 console.error(err);
@@ -55,12 +52,28 @@ SocialNetwork.controller('loadUserProfileController', function ($scope, $routePa
     $scope.userProfile.getFriendPreviewFriendsList = function (username) {
         userServices.getFriendPreviewFriendsList(username)
             .then(function (serverData) {
-                $scope.previewFriends = serverData;
+                $scope.currentUser.previewFriends = serverData;
             }, function (err) {
                 console.error(err);
             });
     };
 
+    $scope.userProfile.getUserFullData($routeParams.username);
+    $scope.userProfile.getFriendWallByPages($routeParams.username);
+
+    $scope.user.searchUsersByName = function (name) {
+        if (!name.isEmpty()) {
+            userServices.searchUsersByName(name)
+                .then(function (serverData) {
+                    $scope.user.foundUsers = serverData;
+                    console.log($scope.user.foundUsers);
+                }, function (err) {
+                    console.error(err);
+                });
+        };
+    };
+
+    // TODO: Profile controller
     $scope.userProfile.sendFriendRequest = function (username) {
         profileServices.sendFriendRequest(username)
             .then(function (serverData) {
@@ -71,22 +84,5 @@ SocialNetwork.controller('loadUserProfileController', function ($scope, $routePa
             });
     };
 
-    $scope.userProfile.getMyFriendsPreview = function () {
-        profileServices.getMyFriendsPreview()
-            .then(function (data) {
-                $scope.previewFriends = data;
-
-                if ($scope.loggedUser) {
-                    $scope.loggedUser.previewFriends = $scope.previewFriends;
-                    $scope.currentUser = $scope.loggedUser;
-                };
-            }, function (err) {
-                console.error(err);
-            });
-    };
-
-    $scope.userProfile.getUserFullData($routeParams.username);
-    $scope.userProfile.getFriendWallByPages($routeParams.username);
-
-    console.log('loadUserProfileController');
+    console.log('userController');
 });

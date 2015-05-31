@@ -4,18 +4,18 @@
     </div>
 
     <div class="page-content">
-        <div class="form">
+        <form class="table">
             <label>Username</label><br/>
             <input type="text" class="username" ng-model="loginData.username"/><br/>
             <label>Password</label><br/>
             <input type="password" class="password" ng-model="loginData.password"/><br/>
 
             <div class="buttons">
-                <button ng-click="authentication.loginUser()">Login</button>
+                <button type="submit" class="btn" ng-click="authentication.loginUser()">Login</button>
             </div>
-        </div>
+        </form>
 
-        <div class="form">
+        <form class="table">
             <label>Username</label><br/>
             <input type="text" class="username" ng-model="registerData.username"/><br/>
             <label>Password</label><br/>
@@ -34,9 +34,9 @@
             </form>
 
             <div class="buttons">
-                <button ng-click="authentication.registerUser()">Register</button>
+                <button type="submit" class="btn" ng-click="authentication.registerUser()">Register</button>
             </div>
-        </div>
+        </form>
     </div>
 
 </div>

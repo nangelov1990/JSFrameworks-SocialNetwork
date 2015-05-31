@@ -29,6 +29,7 @@ SocialNetwork.controller('navbarController', function ($scope, profileServices) 
                     };
 
                     $scope.profile.getFriendRequests();
+                    sessionStorage['loggedUserData']
                 }, function (err) {
                     console.error(err.message)
                 });
@@ -52,16 +53,15 @@ SocialNetwork.controller('navbarController', function ($scope, profileServices) 
         profileServices.approveFriendRequest(requestId)
             .then(function (serverData) {
                 console.log(serverData);
-                //var request = $scope.loggedUser.friendRequests
-                //        .filter(function (request) {
-                //            return request.id = requestId;
-                //        })[0],
-                //    indexOfRequest = $scope.loggedUser.friendRequests.indexOf(request);
-                //
-                //$scope.loggedUser.friendRequests.splice(indexOfRequest, 1);
-                ////$scope.loggedUser.friendRequests.length--;
+                var newFriend = $scope.loggedUser.friendRequests
+                    .filter(function (request) {
+                        return request.id = requestId;
+                    })[0].user;
+
                 $scope.profile.getFriendRequests();
+
                 $scope.friendRequestPreview = false;
+                $scope.previewFriends.friends.push(newFriend);
                 // TODO: Notify
             }, function (err) {
                 console.error(err);
@@ -72,14 +72,6 @@ SocialNetwork.controller('navbarController', function ($scope, profileServices) 
         profileServices.rejectFriendRequest(requestId)
             .then(function (serverData) {
                 console.log(serverData);
-                //var request = $scope.loggedUser.friendRequests
-                //    .filter(function (request) {
-                //       return request.id = requestId;
-                //    })[0],
-                //    indexOfRequest = $scope.loggedUser.friendRequests.indexOf(request);
-                //
-                //$scope.loggedUser.friendRequests.splice(indexOfRequest, 1);
-                ////$scope.loggedUser.friendRequests.length--;
                 $scope.profile.getFriendRequests();
                 $scope.friendRequestPreview = false;
                 // TODO: Notify
@@ -89,4 +81,5 @@ SocialNetwork.controller('navbarController', function ($scope, profileServices) 
     };
 
     loadCurrentUserInfo();
+    console.log('navbarController');
 });

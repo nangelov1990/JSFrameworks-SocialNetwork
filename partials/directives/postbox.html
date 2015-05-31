@@ -1,15 +1,15 @@
 <div id="postbox" class="form">
-    <input type="text" ng-model="posts.newPostContent"/>
+    <textarea class="postbox-input" ng-model="posts.newPostContent"></textarea>
+    <br/>
 
-    <div>
-        <a href="#/users/{{ loggedUser.username }}">
-            <div user-photo class="user-small-img" id="userImg" photo="loggedUser.profileImageData"></div>
-        </a>
-        as
-        <a href="#/users/{{ loggedUser.username }}">
-            <strong>{{ loggedUser.name }}</strong>
+    <div class="inline">
+        <a class="non-decor logged-user-icon" tabindex="-1" href="#users/{{ loggedUser.username }}">
+            <div user-photo photo="loggedUser.profileImageData" class="user-small-img inline"></div>
+            <h3 class="inline postbox-username">as {{ loggedUser.name }}</h3>
         </a>
     </div>
 
-    <button ng-click="posts.addNewPostToUserWall(currentUser.username, posts.newPostContent)">Submit</button>
+    <div class="show-right show-bottom inline">
+        <button type="submit" class="profile-btn btn" class="btn" ng-click="posts.addNewPostToUserWall(currentUser.username, posts.newPostContent)">Submit</button>
+    </div>
 </div>

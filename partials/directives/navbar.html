@@ -1,19 +1,19 @@
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container">
+<nav class="navbar thin-black-border">
+    <div class="row">
 
-        <a href="#users/{{ loggedUser.username }}">
-            <div user-photo photo="loggedUser.profileImageData" class="user-small-img"></div>
-            {{ loggedUser.name }}
-        </a>
+        <div class="nav-buttons inline col-8">
+            <a class="non-decor logged-user-icon" href="#users/{{ loggedUser.username }}">
+                <div user-photo photo="loggedUser.profileImageData" class="user-small-img"></div>
+                <h2 class="user-name">{{ loggedUser.name }}</h2>
+            </a>
 
-        <a href="#/"><img class="icon" src="/img/news-feed.png"/></a>
-        <div friend-requests></div>
-        <a href="#/profile"><img class="icon" src="/img/edit-profile.png"/></a>
-        <a href="#/profile/password"><img class="icon" src="/img/change-password.png"/></a>
-        <a href="#/logout" logout></a>
+            <a href="#/"><img class="icon" src="/img/news-feed.png"/></a>
+            <div class="fr" friend-requests></div>
+            <a href="#/profile"><img class="icon" src="/img/edit-profile.png"/></a>
+            <a href="#/profile/password"><img class="icon" src="/img/change-password.png"/></a>
+            <a href="#/logout" logout></a>
+        </div>
 
-        <!--TODO: Set up search bar-->
-        <!--<input type="text" placeholder="Search..." ng-controller="userController"  ng-change="user.searchUsersByName(user.searchName)" ng-model="user.searchName">{{ user.searchName }}&lt;!&ndash; TODO: clean up: &ndash;&gt;-->
-        <div search-bar></div>
+        <div class="inline col-4" search-bar></div>
     </div>
 </nav>

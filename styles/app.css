@@ -1,13 +1,42 @@
+*,
+*:before,
+*:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.centered {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.mid-vert {
+    vertical-align: middle;
+}
+
+.non-decor {
+    text-decoration: none;
+    color: black;
+}
+
 .wrapper {
     text-align: center;
 }
 
-.form {
+.form, .table {
     padding: 10px;
     margin: 0 20px;
     border: 2px solid black;
-    display: inline-block;
     text-align: left;
+}
+
+.form {
+    display: inline-block;
+}
+
+.table {
+    display: inline-table;
 }
 
 .buttons {
@@ -16,20 +45,22 @@
 }
 
 .comment {
-    width: 95%;
-    border: 1px solid red;
-    margin: 10px 0;
+    width: 90%;
+    background-color: floralwhite;
+    margin: 0px 0 10px;
     border-radius: 10px;
-    padding: 10px 25px 40px;
+    padding: 10px;
     display: inline-block;
+    float: right;
 }
 
 .post {
-    width: 95%;
-    border: 1px solid black;
-    padding: 10px 25px 40px;
+    width: 100%;
+    background-color: whitesmoke;
+    border-radius: 15px;
+    padding: 15px 15px 0px;
     display: inline-block;
-    margin: 10px 0;
+    margin-bottom: 10px;
 }
 
 .box {
@@ -56,13 +87,18 @@
 
 .user-profile-img * {
     object-fit: cover;
-    width: 250px;
-    height: 250px;
+    width: 300px;
+    height: 300px;
     border: 5px solid darkslategrey;
 }
 
+nav.navbar {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
 nav.navbar * {
-    display: inline-block;
+    display: inline;
 }
 
 .previewParent {
@@ -92,7 +128,7 @@ nav.navbar * {
     width:20px;
     height:20px;
     border-radius:50%;
-    font-size: 17px;
+    font-size: 12px;
     color: white;
     text-align: center;
     background: red;
@@ -108,7 +144,7 @@ nav.navbar * {
 }
 
 .icon {
-    width: 50px;;
+    width: 60px;
     box-sizing: border-box;
     padding: 2px;
 }
@@ -124,14 +160,246 @@ nav.navbar * {
     height: 300px;
 }
 
-.comment-controll-preview {
+.text-content {
+    margin-left: 10px;
+    padding: 10px 12px;
+    background-color: gainsboro;
+    border-radius: 3px;
+    margin: 0 0 5px;
+    font-size: 20px;
+}
+
+.small-icon {
+    width: 15px;
+    height: 15px;
+}
+
+.post-commands, .comment-commands {
+    position: relative;
+    width: 100%;
+    text-align: right;
+}
+
+.post-commands {
+    margin-bottom: 15px;
+}
+
+.row {
+    padding: 10px;
+}
+
+.row:before,
+.row:after {
+    display: table;
+    content: " ";
+}
+
+.row:after {
+    clear: both;
+}
+
+.col-4, .col-8, .col-12 {
+    position: relative;
+    min-height: 1px;
+    padding-right: 50px;
+    padding-left: 50px;
+    float: left;
+}
+
+.col-3 {
+    width: 25%;
+}
+
+.col-4 {
+    width: 33.33333333%;
+}
+
+.col-6 {
+    width: 50%;
+}
+
+.col-8 {
+    width: 66.66666667%;
+}
+
+.col-12 {
+    width: 100%;
+}
+
+.logged-user-icon {
+    margin-right: 30px;
+}
+
+.thin-black-border {
+    border: 1px solid black;
+}
+
+.user-info {
+    left: 150px;
+    top: 160px;
+    position: absolute;
+    padding: 20px
+}
+
+#user-data {
+    margin-bottom: 60px;
+}
+
+.btn {
+    text-align: center;
+    border: 2px outset buttonface;
+    background-color: whitesmoke;
+}
+
+.btn:c
+
+.profile-btn {
+    font-size: 17pt;
+    width: 200px;
+    height: 40px;
+}
+
+.user-profile-button, .user-profile-name {
+    position: relative;
+}
+
+.user-profile-button {
+    bottom: 15px;
+}
+
+.user-profile-name {
+    bottom: 10px;
+}
+
+.user-name {
+    position: relative;
+    top: -15px;
+}
+
+.user-name, .user-profile-name {
+    margin: 0 15px;
+}
+
+.author-data, .date-time {
+    padding: 0;
+}
+
+.date-time {
+    text-align: right;
+    margin-top: 5px;
+}
+
+.nav-buttons * {
+    display: inline-block !important;
+}
+
+.friend-requests-list {
+    width: 300px;
+    top: 5px;
+    left: -62px;
+}
+
+.friendListBox {
+    width: 100%;
+}
+
+.friendbox-img, .friendbox-img img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.friendListBox {
+    width: 100%;
+    padding: 0;
+}
+
+.friendbox-heading {
+    padding: 15PX;
+    border-bottom: 2px solid black;
+    margin: 0;
+}
+
+.friendBox {
+    padding: 0px;
+}
+
+.friendlist-name {
+     margin: 0 5%;
+     position: absolute;
+     bottom: 10px;
+     background-color: ghostwhite;
+     padding: 0 5%;
+     border-radius: 5px;
+     border: 1px solid;
+     text-align: center;
+     width: 90%;
+     height: 22px;
+     overflow-y: hidden;
+ }
+
+.news-feed-title {
+    margin: 0 0 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.postbox-username {
+    position: relative;
+    left: 5px;
+    bottom: 5px;
+    margin: 0;
+}
+
+.show-right {
+    position: relative;
+    float: right;
+}
+
+.show-bottom {
+    top: 10px;
+}
+
+div#postbox {
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+textarea {
+    width: 100%;
+}
+
+.postbox-input {
+    width: 100%;
+    height: 100px;
+    margin: 0 0 15px;
+    padding: 5px;
+    font-size: 16pt;
+}
+
+.post-popup {
     border: 1px solid black;
     border-radius: 2px;
     padding: 5px;
+    width: 300px;
+    position: absolute;
+    right: 0;
 }
 
-.text-content {
-    padding: 10px 20px;
-    background-color: whitesmoke;
-    border-radius: 3px;
+.preview-user {
+    width: 300px;
+    display: flex;
+}
+
+.preview-user-name {
+    font-size: 16pt;
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+.preview-user-custom * {
+    width: 100%;
+}
+
+.preview-user-info {
+    padding: 0 10px;
 }

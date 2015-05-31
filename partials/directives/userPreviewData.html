@@ -1,16 +1,22 @@
 <div class="previewParent" ng-mouseover="userPreview=true" ng-mouseleave="userPreview=false">
-    <a href="#/users/{{ user.username }}"> <!-- ng-mouseover="userPreview=true" ng-mouseleave="userPreview=false"-->
-        <div user-photo class="user-small-img" photo="user.profileImageData"></div>
-        <h3 class="author">{{ user.name }}</h3>
+    <a class="non-decor " href="#/users/{{ user.username }}">
+        <div user-photo class="inline user-small-img" photo="user.profileImageData"></div>
+        <h3 class="inline user-name">{{ user.name }}</h3>
     </a>
-    <div ng-if="user.username !== loggedUser.username" ng-click="logText([(user.username != loggedUser.username), user.username, loggedUser.username]);" class="preview mid-border-black" ng-show="userPreview">
-        <div user-photo class="user-mid-img" photo="user.profileImageData"></div>
-        <h2 class="author">{{ user.name }}</h2>
-        {{ user.gender }}
-        <div ng-if="user.username != loggedUser.username">
-            <button ng-show="user.isFriend" disabled="disabled">Friend</button>
-            <button ng-show="user.hasPendingRequest" disabled="disabled">Friend Request Sent</button>
-            <button ng-hide="user.isFriend || user.hasPendingRequest" ng-click="userProfile.sendFriendRequest(user.username)">Add friend</button>
+    <!--  ng-if="user.username !== loggedUser.username ng-show="userPreview""-->
+    <div ng-if="user.username !== loggedUser.username && userPreview" class="preview-user preview mid-border-black">
+        <div user-photo class="col-6 user-mid-img" photo="user.profileImageData"></div>
+        <div class="col-6 preview-user-info">
+            <div class="inline preview-user-name">{{ user.name }}</div>
+            <div class="inline gender">
+                <img src="/img/male-gender-sign.png" ng-if="user.gender == 1"/>
+                <img src="/img/female-gender-sign.png" ng-if="user.gender == 2"/>
+            </div>
+            <div class="preview-user-custom" ng-if="user.username != loggedUser.username">
+                <button class="btn profile-btn" ng-show="user.isFriend" disabled="disabled">Friend</button>
+                <button class="btn profile-btn" ng-show="user.hasPendingRequest" disabled="disabled">Friend Request Sent</button>
+                <button class="btn profile-btn" ng-hide="user.isFriend || user.hasPendingRequest" ng-click="userProfile.sendFriendRequest(user.username)">Add friend</button>
+            </div>
         </div>
     </div>
 </div>
